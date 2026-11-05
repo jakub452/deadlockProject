@@ -1,11 +1,10 @@
-import React from 'react'
 import styles from './Navbar.module.css'
 import logo from '../../assets/logo/lockstats-logo-jasny-tekst.svg'
 import SearchBar from './SearchBar'
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
     return (
-        <div className={styles.navbar}>
+        <header className={styles.navbar}>
             <div className={styles.wrapper}>
                 <div className={styles.left}>
                     <img src={logo} alt="LockStats" className={styles.logo} />
@@ -19,10 +18,10 @@ const Navbar = () => {
                     </nav>
                 </div>
                 <div className={styles.right}>
-                    <SearchBar />
+                    <SearchBar onSearch={onSearch}/>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 

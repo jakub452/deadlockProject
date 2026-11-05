@@ -1,5 +1,4 @@
 export async function getPlayerData(steamID) {
-    
     const url = `https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${steamID}&game_mode=normal`
     try {
         const res = await fetch(url)
@@ -10,6 +9,7 @@ export async function getPlayerData(steamID) {
         return result
     } catch (err) {
         console.error(err.message);
+        return []
     }
 }
 
@@ -24,5 +24,6 @@ export async function getAllHeroes() {
         return result
     } catch (err) {
         console.error(err.message)
+        return []
     }
 }

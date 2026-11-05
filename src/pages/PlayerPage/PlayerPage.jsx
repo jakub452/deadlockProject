@@ -1,36 +1,25 @@
 import { useEffect, useState } from "react"
 import styles from './PlayerPage.module.css'
-import { getAllHeroes, getPlayerData } from "../../api/deadlockApi"
+import { getAllHeroes } from "../../api/deadlockApi"
 
 
-const PlayerPage = () => {
+const PlayerPage = ({ playerData }) => {
 
-  const [steamID, setSteamID] = useState("76561198876250039")
-  const [playerData, setPlayerData] = useState([])
   const [heroesData, setHeroesData] = useState([])
 
   useEffect(() => {
     getAllHeroes().then(data => setHeroesData(data))
   }, []);
 
-  async function handleClick() {
-    const data = await getPlayerData(steamID)
-    setPlayerData(data ?? [])
-  }
 
   return (
     <div className={styles.container}>
-
-      <div className={styles.inputs}>
-        <label htmlFor="steamID">Enter steamID</label>
-        <input type="text" name="steamID" id="steamID" onChange={(e) => setSteamID(e.target.value)} />
-        <button onClick={() => handleClick()}>get Data!</button>
-        <button onClick={() => console.log(playerData)}>console.log(playerData)</button>
-      </div>
+      <p>przykladowe steamid: 76561198876250039</p>
       <table className={styles.heroTable}>
         <tbody>
           {playerData.map((element) => {
             const hero = heroesData.find((h) => h.id === element.hero_id)
+            if(!hero) return
             return (
               <tr key={element.hero_id}>
                 <td><img src={hero.images.icon_hero_card} alt={hero.name} className={styles.heroIcon} /></td>

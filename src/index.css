@@ -1,111 +1,137 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --ls-font-display: "Cinzel", Georgia, serif;
+  --ls-font-body: "Barlow", system-ui, sans-serif;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --ls-ink-950: #0E0D0B;
+  --ls-ink-900: #13110E;
+  --ls-ink-850: #161410;
+  --ls-ink-800: #1A1814;
+  --ls-ink-750: #24211B;
+  --ls-ink-700: #2A2620;
+  --ls-ink-600: #3A342A;
+  --ls-sand-500: #9A907F;
+  --ls-sand-400: #B3A994;
+  --ls-sand-100: #ECE4D4;
+  --ls-paper-50: #F7F3EA;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --ls-gold-300: #F0D08E;
+  --ls-gold-400: #D9B56C;
+  --ls-gold-500: #C9A35A;
+  --ls-gold-700: #7E5D1A;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --ls-blue-300: #7FB0FF;
+  --ls-blue-700: #1F5FBF;
+  --ls-orange-300: #E0855A;
+  --ls-orange-700: #A2461A;
+
+  --ls-item-weapon: #C9773E;   /* Broń */
+  --ls-item-vitality: #6FAE5A; /* Witalność */
+  --ls-item-spirit: #9B7AD8;   /* Duch */
+
+  /* Drużyny */
+  --ls-team-amber: #E0A040;    /* Amber Hand */
+  --ls-team-sapphire: #5B8FE0; /* Sapphire Flame */
+
+  --ls-bg: var(--ls-ink-950);            /* tło strony */
+  --ls-bg-header: var(--ls-ink-900);     /* nagłówek, pasek profilu */
+  --ls-surface: var(--ls-ink-850);       /* karty, panele */
+  --ls-surface-2: var(--ls-ink-800);     /* pola tekstowe, zagnieżdżone panele */
+  --ls-surface-3: var(--ls-ink-750);     /* chipy, selecty, hover */
+  --ls-border: var(--ls-ink-700);
+  --ls-border-strong: var(--ls-ink-600);
+
+  --ls-text: var(--ls-sand-100);         /* tekst główny */
+  --ls-text-muted: var(--ls-sand-400);   /* tekst drugorzędny */
+  --ls-text-subtle: var(--ls-sand-500);  /* etykiety, podpisy */
+
+  --ls-accent: var(--ls-gold-400);       /* przyciski, linki, logo */
+  --ls-accent-hover: var(--ls-gold-300);
+  --ls-accent-text: var(--ls-gold-400);  /* złoty tekst na tle */
+  --ls-on-accent: #17140F;               /* tekst na złotym przycisku */
+
+  --ls-win: var(--ls-blue-300);
+  --ls-win-bg: #141A24;
+  --ls-win-border: #26324A;
+  --ls-loss: var(--ls-orange-300);
+  --ls-loss-bg: #1D1611;
+  --ls-loss-border: #3E2A20;
+  --ls-on-result: #17140F;               /* tekst na pełnym kolorze W/L */
+
+  --ls-focus: var(--ls-gold-300);
+  --ls-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+:root[data-theme="light"] {
+  --ls-bg: var(--ls-paper-50);
+  --ls-bg-header: #FFFFFF;
+  --ls-surface: #FFFFFF;
+  --ls-surface-2: #EFE9DC;
+  --ls-surface-3: #E6DECD;
+  --ls-border: #DDD4C2;
+  --ls-border-strong: #C7BBA4;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  --ls-text: #17140F;
+  --ls-text-muted: #564E40;
+  --ls-text-subtle: #6B6252;
+
+  --ls-accent: var(--ls-gold-400);
+  --ls-accent-hover: var(--ls-gold-500);
+  --ls-accent-text: var(--ls-gold-700);
+  --ls-on-accent: #17140F;
+
+  --ls-win: var(--ls-blue-700);
+  --ls-win-bg: #EAF1FC;
+  --ls-win-border: #C3D6F3;
+  --ls-loss: var(--ls-orange-700);
+  --ls-loss-bg: #FBEEE7;
+  --ls-loss-border: #F0CDBB;
+  --ls-on-result: #FFFFFF;
+
+  --ls-focus: var(--ls-gold-700);
+  --ls-shadow: 0 8px 24px rgba(23, 20, 15, 0.12);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root.ls-auto-theme:not([data-theme="dark"]) {
+    --ls-bg: var(--ls-paper-50);
+    --ls-bg-header: #FFFFFF;
+    --ls-surface: #FFFFFF;
+    --ls-surface-2: #EFE9DC;
+    --ls-surface-3: #E6DECD;
+    --ls-border: #DDD4C2;
+    --ls-border-strong: #C7BBA4;
+    --ls-text: #17140F;
+    --ls-text-muted: #564E40;
+    --ls-text-subtle: #6B6252;
+    --ls-accent: var(--ls-gold-400);
+    --ls-accent-hover: var(--ls-gold-500);
+    --ls-accent-text: var(--ls-gold-700);
+    --ls-on-accent: #17140F;
+    --ls-win: var(--ls-blue-700);
+    --ls-win-bg: #EAF1FC;
+    --ls-win-border: #C3D6F3;
+    --ls-loss: var(--ls-orange-700);
+    --ls-loss-bg: #FBEEE7;
+    --ls-loss-border: #F0CDBB;
+    --ls-on-result: #FFFFFF;
+    --ls-focus: var(--ls-gold-700);
+    --ls-shadow: 0 8px 24px rgba(23, 20, 15, 0.12);
+    color-scheme: light;
   }
 }
 
 body {
+  font-family: var(--ls-font-body);
+}
+
+h1, h2{
+  font-family: var(--ls-font-display);
+}
+*{
+  padding: 0;
   margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }

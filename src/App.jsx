@@ -6,21 +6,38 @@ import { getPlayerData } from './api/deadlockApi.js';
 function App() {
   const [steamID, setSteamID] = useState("")
   const [playerData, setPlayerData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+
 
   useEffect(() => {
-    if(!steamID) return
-    getPlayerData(steamID)
-      .then((data) => {
+    const load = async () => {
+      setIsLoading(true)
+      setError(null)
+
+      try {
+        const data = await getPlayerData(steamID)
         setPlayerData(data)
-      })
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    if (!steamID){
+      return
+    } else {
+      load()
+    }
   }, [steamID]);
 
-  return (
 
+
+  return (
     <div>
       <Navbar onSearch={setSteamID} />
-      <button onClick={() => {console.log(playerData)}}>console.log(playerData)</button>
-      <PlayerPage playerData={playerData} />
+      <PlayerPage playerData={playerData} isLoading={isLoading} hasError={error} />
     </div>
 
   )

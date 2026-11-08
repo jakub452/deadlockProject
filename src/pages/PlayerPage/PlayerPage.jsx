@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
 import styles from './PlayerPage.module.css'
-import { getAllHeroes, getPlayerData } from "../../api/deadlockApi"
+import { getAllHeroes, getPlayerData, getPlayerSteamData } from "../../api/deadlockApi"
 import { useParams } from "react-router"
+import ProfileHead from "../../components/ProfileHead/ProfileHead"
 
 const PlayerPage = () => {
   const { id } = useParams()
   const [heroesData, setHeroesData] = useState([])
-
 
   const [playerData, setPlayerData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
 
-  async function load() {
+  async function loadPlayerData() {
     setIsLoading(true)
     setError(null)
 
@@ -26,21 +26,22 @@ const PlayerPage = () => {
       setIsLoading(false)
     }
   }
+  
 
 
   useEffect(() => {
     getAllHeroes().then(data => setHeroesData(data))
   }, []);
 
-
   useEffect(() => {
     if (!id) {
       return
     } else {
-      load()
+      loadPlayerData()
     }
   }, [id]);
 
+  
   if (isLoading) {
     return (
       <div className={styles.status}>Loading</div>
@@ -55,6 +56,9 @@ const PlayerPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.profileHead}>
+        <ProfileHead id={id} />
+      </div>
       <table className={styles.heroTable}>
         <tbody>
           {playerData.map((element) => {

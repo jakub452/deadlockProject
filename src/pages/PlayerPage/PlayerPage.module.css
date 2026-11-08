@@ -1,27 +1,32 @@
-.inputs{
+.inputs {
   display: flex;
   align-items: center;
   justify-content: space-around;
 
   width: 50%;
 }
-.container{
+
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: var(--ls-bg);
 }
-.heroIcon{
+
+.heroIcon {
   width: 3rem;
 }
-.heroTable{
+
+.heroTable {
   width: 40%;
 }
-td{
+
+td {
   text-align: start;
 }
 
-.status{
+.status {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,4 +34,13 @@ td{
   height: 20vh;
 
   font-size: 1.3rem;
+}
+
+.profileHead {
+  width: 100%;
+  background-color: var(--ls-bg-header);
+  border: 1px solid var(--ls-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

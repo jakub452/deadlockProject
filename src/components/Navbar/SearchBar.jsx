@@ -23,6 +23,7 @@ const SearchBar = () => {
     <form className={styles.container} onSubmit={handleSubmit}>
         <Search size={14} strokeWidth={2.2} className={styles.searchIcon} aria-hidden="true" />
         <input 
+          autoComplete="off"
           inputMode='numeric' 
           aria-label='Wyszukaj gracza'
           type="text" 

@@ -8,6 +8,16 @@ export async function getPlayerData(steamID) {
     return result
 }
 
+export async function getPlayerSteamData(steamID) {
+    const url = `https://api.deadlock-api.com/v1/players/steam?account_ids=${steamID}`
+    const res = await fetch(url)
+    if(!res.ok){
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json();
+    return result
+}
+
 export async function getAllHeroes() {
     const url = `https://api.deadlock-api.com/v1/assets/heroes/`
     try {

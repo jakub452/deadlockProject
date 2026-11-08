@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import styles from './SearchBar.module.css'
 import { Search } from 'lucide-react'
+import { useNavigate } from 'react-router'
 
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [inputData, setInputData] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    const inputDataTrim = inputData.trim()
     e.preventDefault()
+    const inputDataTrim = inputData.trim()
     if(!/^[0-9]{17}$/.test(inputDataTrim)) {
       alert('Nieprawidłowy steamID')
       return
     }
-    onSearch(inputDataTrim)
+    navigate(`/profile/${inputDataTrim}`)
     setInputData("")
   }
 

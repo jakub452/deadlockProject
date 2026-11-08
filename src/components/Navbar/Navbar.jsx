@@ -1,13 +1,21 @@
 import styles from './Navbar.module.css'
 import logo from '../../assets/logo/lockstats-logo-jasny-tekst.svg'
 import SearchBar from './SearchBar'
+import { useNavigate } from 'react-router'
 
-const Navbar = ({ onSearch }) => {
+const Navbar = () => {
+    const navigate = useNavigate();
+
     return (
         <header className={styles.navbar}>
             <div className={styles.wrapper}>
                 <div className={styles.left}>
-                    <img src={logo} alt="LockStats" className={styles.logo} />
+                    <img 
+                        src={logo} 
+                        alt="LockStats" 
+                        className={styles.logo} 
+                        onClick={() => {navigate('/')}}
+                    />
                     <nav>
                         <ul>
                             <li><a href="#">Statystyki</a></li>
@@ -18,7 +26,7 @@ const Navbar = ({ onSearch }) => {
                     </nav>
                 </div>
                 <div className={styles.right}>
-                    <SearchBar onSearch={onSearch}/>
+                    <SearchBar />
                 </div>
             </div>
         </header>

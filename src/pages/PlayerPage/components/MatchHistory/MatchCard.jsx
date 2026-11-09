@@ -11,17 +11,21 @@ const MatchCard = ({ match, heroesData }) => {
         4: "Ranked"
     }
 
-
+    function formatDuration(s) {
+        const min = Math.floor(s/60)
+        const sec = s%60
+        return `${min}:${String(sec).padStart(2,"0")}`
+    }
 
     function formatMatch(match, matchMetadata) {
         const hero = heroesData.find(hero => hero.id === match.hero_id)
         return {
-            result: match.player_match_outcome === 1? "Win" : "Lose",
+            result: match.player_match_outcome === 1? "win" : "lose",
             mode: matchModes[match.match_mode],
-            duration: match.match_duration_s,
+            duration: formatDuration(match.match_duration_s),
             hero: {
-                name: hero.name,
-                icon: hero.images.icon_image_small
+                name: hero?.name,
+                icon: hero?.images?.icon_image_small
             },
             kills: match.player_kills,
             deaths: match.player_deaths,
@@ -50,12 +54,12 @@ const MatchCard = ({ match, heroesData }) => {
         if(!match){
             return
         }
-        load(match.match_id)
+        // load(match.match_id)
     }, [match]);
 
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${m.result === "win" ? styles.win : styles.lose}`}>
             <button className={styles.debugbutton} onClick={() => console.log(matchMetadata, match)}>DEBUG!</button>
 
             <div className={styles.matchText}>
@@ -64,7 +68,7 @@ const MatchCard = ({ match, heroesData }) => {
                 <p className={styles.matchDuration}>{m.duration}</p>
             </div>
             <div className={styles.matchHero}>
-                <p className={styles.heroIcon}><img src={m.hero.icon} alt="hero icon" /></p>
+                <div className={styles.heroIcon}><img src={m.hero.icon} alt={m.hero.name } /></div>
                 <div className={styles.heroText}>
                     <p className={styles.heroName}>{m.hero.name}</p>
                 </div>

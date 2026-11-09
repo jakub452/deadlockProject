@@ -29,7 +29,7 @@ const MatchHistory = ({ id }) => {
     return (
         <>
             {
-                matchHistory.slice(0,10).map(match => (
+                matchHistory.slice(0,20).map(match => (
                     <MatchCard match={match} key={match.match_id} heroesData={heroesData} />
                 ))
             }

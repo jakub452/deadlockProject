@@ -11,7 +11,7 @@ const LandingPage = () => {
         <div className={styles.wrapper}>
             <SearchBar />
         </div>
-        <div>Przykładowe profile: 76561198876250039; 76561199487617891</div>
+        <div>Przykładowe profile: 76561198876250039; 76561198994389403</div>
     </main>
   )
 }

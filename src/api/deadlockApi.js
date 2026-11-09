@@ -19,6 +19,27 @@ export async function getPlayerMatchHistoryData(id) {
     
 }
 
+export async function getPlayerRank(playerId) {
+    const url = `https://api.deadlock-api.com/v1/players/${playerId}/rank`
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json();
+    return result
+}
+
+
+export async function getRankData(rank) {
+    const url = `https://api.deadlock-api.com/v1/assets/ranks/${rank}`
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json();
+    return result
+}
+
 export async function getMatchMetadata(matchID) {
     const url = `https://api.deadlock-api.com/v1/matches/${matchID}/metadata`
     const res = await fetch(url)

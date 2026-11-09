@@ -30,7 +30,7 @@ const MatchCard = ({ match, heroesData }) => {
             kills: match.player_kills,
             deaths: match.player_deaths,
             assists: match.player_assists,
-            kda: ((match.player_kills + match.player_assists) / match.player_deaths).toFixed(2),
+            kda: ((match.player_kills + match.player_assists) / Math.max(match.player_deaths, 1)).toFixed(2),
             souls: match.net_worth,
             // damage: ,
             lastHits: match.last_hits,
@@ -60,7 +60,6 @@ const MatchCard = ({ match, heroesData }) => {
 
     return (
         <div className={`${styles.container} ${m.result === "win" ? styles.win : styles.lose}`}>
-            <button className={styles.debugbutton} onClick={() => console.log(matchMetadata, match)}>DEBUG!</button>
 
             <div className={styles.matchText}>
                 <p className={styles.matchResult}>{m.result}</p>

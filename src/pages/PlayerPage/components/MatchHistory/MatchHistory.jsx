@@ -5,35 +5,48 @@ import MatchCard from './MatchCard'
 
 
 const MatchHistory = ({ id }) => {
-    const [matchHistory, setMatchHistory] = useState([])
-    const [heroesData, setHeroesData] = useState([])
-
-    async function load() {
+    
+    const [matchHistoryData, setMatchHistoryData] = useState([])
+    async function loadMatchHistoryData() {
         try {
             const data = await getPlayerMatchHistoryData(id)
-            const heroesData = await getAllHeroes()
-            setHeroesData(heroesData)
-            setMatchHistory(data)
+            setMatchHistoryData(data)
         } catch (err) {
             console.log(err.message)
         }
     }
-
     useEffect(() => {
-        if(!id){
+        if (!id) {
             return
         }
-        load()
+        loadMatchHistoryData()
+
     }, [id]);
 
+
+    const [heroesData, setHeroesData] = useState([])
+    async function loadHeroesData() {
+        try {
+            const heroesData = await getAllHeroes()
+            setHeroesData(heroesData)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+    useEffect(() => {
+        loadHeroesData()
+    }, [])
+
+
+
     return (
-        <>
+        <div className={styles.container}>
             {
-                matchHistory.slice(0,20).map(match => (
+                matchHistoryData.slice(0, 20).map(match => (
                     <MatchCard match={match} key={match.match_id} heroesData={heroesData} />
                 ))
             }
-        </>
+        </div>
     )
 }
 

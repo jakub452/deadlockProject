@@ -8,10 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: relative;
 }
 
 .searchIcon{
     padding: 8px;
+    width: 10%;
     color: var(--ls-text-muted);
 }
 
@@ -33,4 +36,47 @@ form button{
     height: 100%;
     padding: 8px;
     cursor: pointer;
+}
+
+.searchResult{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 3.5rem;
+    z-index: 111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    padding: 1rem;
+
+    background-color: var(--ls-surface-2);
+    border-radius: 8px;
+}
+
+.searchResultCard{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--ls-surface);
+    width: 100%;
+    margin: 0.2rem;
+    padding: 0.5rem;
+    border: 1px solid var(--ls-border-strong);
+    border-radius: 8px;
+}
+.searchResultCard:hover{
+    background-color: var(--ls-surface-2);
+    cursor: pointer;
+}
+.searchResultCard p{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.wrapper p:nth-last-child(1){
+    color: var(--ls-text-muted);
+    font-size: 0.8rem;
 }

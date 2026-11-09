@@ -7,7 +7,6 @@ const RankCard = ({ id }) => {
     const [playerRank, setPlayerRank] = useState([])
     const [rankData, setRankData] = useState([])
 
-
     useEffect(() => {
         if (!id) {
             return

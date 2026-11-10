@@ -37,6 +37,7 @@ const PlayerPage = () => {
           profileId={playerSteamData[0]?.account_id}
           name={playerSteamData[0]?.personaname}
           avatarUrl={playerSteamData[0]?.avatarfull}
+          steamUrl={playerSteamData[0]?.profileurl}
         />
       </div>
       <div className={styles.profileBody}>

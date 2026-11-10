@@ -78,12 +78,12 @@ const MatchCard = ({ match, heroesData }) => {
             </div>
             <div className={styles.matchStats}>
                 <div className={styles.matchStatsSouls}>
-                    <p>Dusze</p>
+                    <p>Souls</p>
                     <p>{m.souls}</p>
                 </div>
                 {/* <div className={styles.matchStatsDamage}></div> */}
                 <div className={styles.matchStatsAcuracy}>
-                    <p>LH/DN</p>
+                    <p>LH / DN</p>
                     <p>{m.lastHits} / {m.denies}</p>
                 </div>
             </div>

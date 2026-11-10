@@ -3,31 +3,49 @@
     align-items: center;
     justify-content: space-evenly;
     border-radius: 8px;
-    margin: 0.3rem;
     width: 100%;
+    margin-bottom: 0.5rem;
 }
+
 
 
 .matchText{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+
+    height: 100%;
+    
     width: 10%;
 }
-.matchResult{
 
+.matchHero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 10%;
+    
 }
-
-.debugbutton{
-    position: absolute;
-    top: 100px;
-    left: 0px;
+.matchKda{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 15%;
+    overflow: hidden;
 }
 .matchStats{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 12%;
+    width: 15%;
+
 }
 
 .heroIcon img{
+
     width: 3rem;
 
 }

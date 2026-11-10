@@ -11,21 +11,21 @@
     margin: 1rem;
     margin-left: 0;
 }
+.cardTitle{
+    font-size: 0.6rem;
+}
+.cardRank{    
+    display: flex;
+    align-items: center;
+    justify-content: start;
 
+}
 .rankIcon{
     width: 30%;
     margin: 1rem;
     margin-left: 0;
 }
 
-.cardTitle{
+.rankText{
     font-size: 0.8rem;
-
-}
-
-.cardRank{    
-    display: flex;
-    align-items: center;
-    justify-content: start;
-
 }

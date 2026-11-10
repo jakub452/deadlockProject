@@ -18,10 +18,10 @@ const Navbar = () => {
                     />
                     <nav>
                         <ul>
-                            <li><a href="#">Statystyki</a></li>
-                            <li><a href="#">Bohaterowie</a></li>
-                            <li><a href="#">Rankingi</a></li>
-                            <li><a href="#">Buildy</a></li>
+                            <li><a href="#">Stats</a></li>
+                            <li><a href="#">Heroes</a></li>
+                            <li><a href="#">Leaderboards</a></li>
+                            <li><a href="#">Builds</a></li>
                         </ul>
                     </nav>
                 </div>

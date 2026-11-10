@@ -7,6 +7,7 @@ import MatchCard from './MatchCard'
 const MatchHistory = ({ id }) => {
     
     const [matchHistoryData, setMatchHistoryData] = useState([])
+    
     async function loadMatchHistoryData() {
         try {
             const data = await getPlayerMatchHistoryData(id)

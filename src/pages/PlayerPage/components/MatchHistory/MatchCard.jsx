@@ -1,61 +1,8 @@
-import { useEffect, useState } from 'react'
-import { getMatchMetadata } from '../../../../api/deadlockApi'
 import styles from './MatchCard.module.css'
+import formatMatch from './utils/formatMatch'
 
 const MatchCard = ({ match, heroesData }) => {
-
-    const [matchMetadata, setMatchMetadata] = useState(null)
-
-    const matchModes = { 
-        1: "Normal",
-        4: "Ranked"
-    }
-
-    function formatDuration(s) {
-        const min = Math.floor(s/60)
-        const sec = s%60
-        return `${min}:${String(sec).padStart(2,"0")}`
-    }
-
-    function formatMatch(match, matchMetadata) {
-        const hero = heroesData.find(hero => hero.id === match.hero_id)
-        return {
-            result: match.player_match_outcome === 1? "win" : "lose",
-            mode: matchModes[match.match_mode],
-            duration: formatDuration(match.match_duration_s),
-            hero: {
-                name: hero?.name,
-                icon: hero?.images?.icon_image_small
-            },
-            kills: match.player_kills,
-            deaths: match.player_deaths,
-            assists: match.player_assists,
-            kda: ((match.player_kills + match.player_assists) / Math.max(match.player_deaths, 1)).toFixed(2),
-            souls: match.net_worth,
-            // damage: ,
-            lastHits: match.last_hits,
-            denies: match.denies,
-            // items: ,
-
-
-        }
-    }
-    const m = formatMatch(match, matchMetadata)
-    async function load(id) {
-        try {
-            const data = await getMatchMetadata(id)
-            setMatchMetadata(data)
-        } catch (err) {
-            console.log(err.message)
-        }
-    }
-
-    useEffect(() => {
-        if(!match){
-            return
-        }
-        // load(match.match_id)
-    }, [match]);
+    const m = formatMatch(match, heroesData)
 
 
     return (
@@ -81,7 +28,6 @@ const MatchCard = ({ match, heroesData }) => {
                     <p>Souls</p>
                     <p>{m.souls}</p>
                 </div>
-                {/* <div className={styles.matchStatsDamage}></div> */}
                 <div className={styles.matchStatsAcuracy}>
                     <p>LH / DN</p>
                     <p>{m.lastHits} / {m.denies}</p>

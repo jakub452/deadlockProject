@@ -36,6 +36,12 @@ form button{
     height: 100%;
     padding: 8px;
     cursor: pointer;
+    border-left: 1px solid transparent;
+    border-radius: 8px;
+    transition: border 0.1s;
+}
+form button:hover{
+    border-left: 1px solid var(--ls-border-strong);
 }
 
 .searchResult{

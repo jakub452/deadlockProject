@@ -9,7 +9,15 @@ export async function getPlayerData(steamID) {
 }
 
 export async function searchPlayer(input) {
-    const url = `https://api.deadlock-api.com/v1/players/steam-search?search_query=${input}&limit=5&min_matches_played_last_30d=5&min_last_team_avg_badge=0&matches_played_weight=0.02`
+    const params = new URLSearchParams({
+        search_query: input,
+        limit: 5,
+        min_matches_played_last_30d: 5,
+        min_last_team_avg_badge: 0,
+        matches_played_weight: 0.02,
+    })
+
+    const url = `https://api.deadlock-api.com/v1/players/steam-search?${params}`
     const res = await fetch(url)
     if (!res.ok) {
         throw new Error(`Res error: ${res.status}`)
@@ -19,6 +27,30 @@ export async function searchPlayer(input) {
 }
 export async function getPlayerMatchHistoryData(id) {
     const url = `https://api.deadlock-api.com/v1/players/${id}/match-history`
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json();
+    return result
+
+}
+
+export async function getPlayerMatchHistoryMetadata(ids, accountId) {
+
+    const params = new URLSearchParams({
+        match_ids: ids.join(","),
+        account_ids: accountId,
+        only_filtered_players: true,
+        include_info: true,
+        include_player_info: true,
+        include_player_items: true,
+        include_player_final_stats: true,
+        order_by: "start_time",
+        order_direction: "desc",
+    })
+
+    const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`
     const res = await fetch(url)
     if (!res.ok) {
         throw new Error(`Res error: ${res.status}`)

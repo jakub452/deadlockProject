@@ -22,20 +22,26 @@ const SearchBar = () => {
 
 
   useEffect(() => {
+
     if (!inputData.trim()) {
       setSearchResult([])
       return
     }
+
     async function load() {
       const data = await searchPlayer(inputData)
-      setSearchResult(data)
+      try {
+        setSearchResult(data)
+      } catch (err) {
+        console.log(err.message)
+      }
     }
+
     const debounce = setTimeout(() => {
       load()
     }, 400);
-
-    return() => {
-        clearTimeout(debounce)
+    return () => {
+      clearTimeout(debounce)
     }
   }, [inputData]);
 
@@ -44,37 +50,37 @@ const SearchBar = () => {
       {
         searchResult.length > 0 && (
           <div className={styles.searchResult}>
-        {
-          searchResult.map(elem => (
-            <div key={elem.account_id} 
-              className={styles.searchResultCard} 
-              onClick={() => {
-                navigate(`/profile/${elem.account_id}`)
-                setInputData("")
-                setSearchResult([])
-              }}>
-              <img src={elem.avatar} alt={elem.personaname} />
-              <div className={styles.wrapper}>
-                <p>{elem.personaname}</p>
-                <p>{elem.account_id}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+            {
+              searchResult.map(elem => (
+                <div key={elem.account_id}
+                  className={styles.searchResultCard}
+                  onClick={() => {
+                    navigate(`/profile/${elem.account_id}`)
+                    setInputData("")
+                    setSearchResult([])
+                  }}>
+                  <img src={elem.avatar} alt={elem.personaname} />
+                  <div className={styles.wrapper}>
+                    <p>{elem.personaname}</p>
+                    <p>{elem.account_id}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         )
       }
       <Search size={14} strokeWidth={2.2} className={styles.searchIcon} aria-hidden="true" />
       <input
         autoComplete="off"
-        aria-label='Wyszukaj gracza'
+        aria-label='Search player'
         type="text"
         name="searchBar"
         id="searchBar"
-        placeholder='Wyszukaj gracza!'
+        placeholder='Search player'
         onChange={(e) => setInputData(e.target.value)} value={inputData}
       />
-      <button type="submit">Wyszukaj</button>
+      <button type="submit">Search</button>
     </form>
   )
 }

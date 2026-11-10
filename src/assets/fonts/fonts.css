@@ -1,0 +1,24 @@
+/* Lockstats — czcionki (Cinzel do nagłówków/logo, Barlow do tekstu) */
+@font-face { font-family: "Cinzel"; src: url("cinzel/Cinzel-Medium.woff2") format("woff2"), url("cinzel/Cinzel-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cinzel"; src: url("cinzel/Cinzel-Bold.woff2") format("woff2"), url("cinzel/Cinzel-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+
+@font-face { font-family: "Barlow"; src: url("barlow/Barlow-Regular.woff2") format("woff2"), url("barlow/Barlow-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("barlow/Barlow-Medium.woff2") format("woff2"), url("barlow/Barlow-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("barlow/Barlow-SemiBold.woff2") format("woff2"), url("barlow/Barlow-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("barlow/Barlow-Bold.woff2") format("woff2"), url("barlow/Barlow-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --ls-bg: #0E0D0B;
+  --ls-surface: #161410;
+  --ls-border: #2A2620;
+  --ls-text: #ECE4D4;
+  --ls-muted: #B3A994;
+  --ls-gold: #D9B56C;
+  --ls-win: #7FB0FF;
+  --ls-loss: #E0855A;
+  --ls-font-display: "Cinzel", Georgia, serif;
+  --ls-font-body: "Barlow", system-ui, sans-serif;
+}
+
+/* Logo tekstowe w HTML (zamiast pliku SVG) */
+.ls-wordmark { font-family: var(--ls-font-display); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }

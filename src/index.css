@@ -131,6 +131,8 @@
 
 body {
   font-family: var(--ls-font-body);
+  background-color: var(--ls-bg);
+  color: var(--ls-text);
 }
 
 h1, h2{

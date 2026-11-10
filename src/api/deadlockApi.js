@@ -36,10 +36,20 @@ export async function getPlayerMatchHistoryData(id) {
 
 }
 
+export async function getItemsData() {
+    const url = 'https://api.deadlock-api.com/v1/assets/items'
+    const res = await fetch(url)
+    if(!res.ok) {
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json()
+    return result
+}
+
 export async function getPlayerMatchHistoryMetadata(ids, accountId) {
 
     const params = new URLSearchParams({
-        match_ids: ids.join(","),
+        match_ids: ids,
         account_ids: accountId,
         only_filtered_players: true,
         include_info: true,
@@ -48,6 +58,7 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
         include_player_final_stats: true,
         order_by: "start_time",
         order_direction: "desc",
+        limit: 10,
     })
 
     const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`

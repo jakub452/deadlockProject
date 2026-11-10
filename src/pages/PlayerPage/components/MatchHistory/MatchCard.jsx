@@ -1,12 +1,12 @@
 import styles from './MatchCard.module.css'
 import formatMatch from './utils/formatMatch'
 
-const MatchCard = ({ match, heroesData }) => {
-    const m = formatMatch(match, heroesData)
+const MatchCard = ({ match, heroesData, itemsData }) => {
+    const m = formatMatch(match, heroesData, itemsData)
 
 
     return (
-        <div className={`${styles.container} ${m.result === "win" ? styles.win : styles.lose}`}>
+        <div className={`${styles.container} ${m.result === "Win" ? styles.win : styles.lose}`}>
 
             <div className={styles.matchText}>
                 <p className={styles.matchResult}>{m.result}</p>
@@ -32,6 +32,17 @@ const MatchCard = ({ match, heroesData }) => {
                     <p>LH / DN</p>
                     <p>{m.lastHits} / {m.denies}</p>
                 </div>
+            </div>
+            <div className={styles.itemList}>
+                {
+                    m.items.map(item => (
+                        <div>
+                            <img key={item?.name} src={item?.image} alt={item?.name} className={styles.item}/>
+                            <p>{item?.name}</p>
+                        </div>
+                            
+                    ))
+                }
             </div>
 
         </div>

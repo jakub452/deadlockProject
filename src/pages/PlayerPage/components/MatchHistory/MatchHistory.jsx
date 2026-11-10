@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react'
 import styles from './MatchHistory.module.css'
-import { getAllHeroes, getPlayerMatchHistoryData } from '../../../../api/deadlockApi'
+import { getAllHeroes, getItemsData, getPlayerMatchHistoryData, getPlayerMatchHistoryMetadata } from '../../../../api/deadlockApi'
 import MatchCard from './MatchCard'
 
 
 const MatchHistory = ({ id }) => {
-    
-    const [matchHistoryData, setMatchHistoryData] = useState([])
-    
+
+    const [matchMetadata, setMatchMetadata] = useState([])
+
     async function loadMatchHistoryData() {
         try {
             const data = await getPlayerMatchHistoryData(id)
-            setMatchHistoryData(data)
+            const Ids = data.slice(0,10).map(match => match.match_id)
+            console.log(Ids)
+            
+            const metadata = await getPlayerMatchHistoryMetadata(Ids, id)
+            console.log(metadata)
+            setMatchMetadata(metadata)
+
         } catch (err) {
             console.log(err.message)
         }
@@ -22,20 +28,25 @@ const MatchHistory = ({ id }) => {
         }
         loadMatchHistoryData()
 
+        
     }, [id]);
 
 
     const [heroesData, setHeroesData] = useState([])
-    async function loadHeroesData() {
+    const [itemsData, setItemsData] = useState([])
+    async function loadAssetData() {
         try {
             const heroesData = await getAllHeroes()
             setHeroesData(heroesData)
+
+            const itemsData = await getItemsData()
+            setItemsData(itemsData)
         } catch (err) {
             console.log(err.message)
         }
     }
     useEffect(() => {
-        loadHeroesData()
+        loadAssetData()
     }, [])
 
 
@@ -43,8 +54,8 @@ const MatchHistory = ({ id }) => {
     return (
         <div className={styles.container}>
             {
-                matchHistoryData.slice(0, 20).map(match => (
-                    <MatchCard match={match} key={match.match_id} heroesData={heroesData} />
+                matchMetadata.slice(0, 20).map(match => (
+                    <MatchCard match={match} key={match.match_id} heroesData={heroesData} itemsData={itemsData} />
                 ))
             }
         </div>

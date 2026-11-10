@@ -62,3 +62,23 @@
     border: 2px solid var(--ls-loss-border);
     border-left: 6px solid var(--ls-loss);
 }
+.itemList{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    overflow-x: scroll;
+
+    width: 40%;
+}
+.item{
+    width: 2rem;
+    height: 2rem;
+}
+.itemList div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 2rem;
+}

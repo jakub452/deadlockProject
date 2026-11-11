@@ -3,40 +3,43 @@
   align-items: center;
   flex-direction: column;
   background-color: var(--ls-bg);
-  margin-top: 16px;
 }
 
 .profileHead {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   border-radius: 8px;
   background-color: var(--ls-bg-header);
   border: 1px solid var(--ls-border);
   display: flex;
   justify-content: start;
+
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .profileBody {
   display: flex;
   align-items: start;
   justify-content: center;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
 
 }
+
 .profileLeft {
-  width: 600px;
-}
-.profileRight {
+  max-width: 300px;
+  width: 100%;
+  margin-right: 16px;
 
+}
+
+.profileRight {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 870px;
-  
+  max-width: 900px;
+  width: 100%;
+
 }
-
-
-
-
-
-

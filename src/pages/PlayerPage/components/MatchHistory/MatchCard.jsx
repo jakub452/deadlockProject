@@ -12,6 +12,7 @@ const MatchCard = ({ match, heroesData, itemsData }) => {
                 <p className={styles.matchResult}>{m.result}</p>
                 <p className={styles.matchMode}>{m.mode}</p>
                 <p className={styles.matchDuration}>{m.duration}</p>
+                <p>{m.timeSince}</p>
             </div>
             <div className={styles.matchHero}>
                 <div className={styles.heroIcon}><img src={m.hero.icon} alt={m.hero.name } /></div>

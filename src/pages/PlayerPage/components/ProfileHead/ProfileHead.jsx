@@ -10,7 +10,7 @@ const ProfileHead = ({ profileId, name, avatarUrl, steamUrl }) => {
                 <h1 className={styles.profileName}>{name}</h1>
                 <div className={styles.profileId}>
                     <p>id: {profileId}</p>
-                    <SteamSVG />
+                    <a href={steamUrl} target='_blank'><SteamSVG /></a>
                 </div>
 
             </div>

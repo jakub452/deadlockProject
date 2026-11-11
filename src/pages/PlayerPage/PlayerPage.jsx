@@ -43,7 +43,6 @@ const PlayerPage = () => {
       <div className={styles.profileBody}>
         <div className={styles.profileLeft}>
           <RankCard id={playerSteamData[0]?.account_id}/>
-          <div>Statystyki bohatera</div>
         </div>
         <div className={styles.profileRight}>
           <MatchHistory id={playerSteamData[0]?.account_id} />

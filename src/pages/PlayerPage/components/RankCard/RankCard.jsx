@@ -22,26 +22,18 @@ const RankCard = ({ id }) => {
                 console.log(err.message)
             }
         }
-        
+
         load(id)
     }, [id])
 
     return (
         <div className={styles.container}>
-            <div className={styles.cardTitle}>
-                <h1>Ranga</h1>
-            </div>
-            <div className={styles.cardRank}>
-                <img 
-                    className={styles.rankIcon} 
-                    src={rankData?.images?.[`large_subrank${playerRank?.subrank}`] ?? rankData?.images?.large}
-                />
+            <p className={styles.rankTitle}>Rank</p>
+            <div className={styles.rankInfo}>
+                <img className={styles.rankImg} src={rankData?.images?.[`large_subrank${playerRank?.subrank}`] ?? rankData?.images?.small} alt={rankData.name} />
                 <div className={styles.rankText}>
-                    <h1>{rankData.name} {playerRank.subrank}</h1>
+                    <p>{rankData.name} {playerRank.subrank}</p>
                 </div>
-            </div>
-            <div className={styles.cardWinratio}>
-                <div></div>
             </div>
         </div>
     )

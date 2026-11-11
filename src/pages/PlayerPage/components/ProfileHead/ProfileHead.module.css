@@ -8,7 +8,8 @@
 }
 
 .avatar{
-    width: 100px;
+    max-width: 100px;
+    width: 100%;
     border: 1px solid var(--ls-accent);
     border-radius: 4px;
 }
@@ -29,11 +30,12 @@
 
 .profileId{
     display: flex;
-    width: 115px;
     align-items: center;
     justify-content: space-between;
+    max-width: 110px;
+    width: 100%;
     font-size: 0.9rem;
-    color: var(--ls-muted);
+    color: var(--ls-text-muted);
 }
 
 

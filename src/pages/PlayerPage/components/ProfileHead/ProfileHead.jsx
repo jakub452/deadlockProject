@@ -10,7 +10,7 @@ const ProfileHead = ({ profileId, name, avatarUrl, steamUrl }) => {
                 <h1 className={styles.profileName}>{name}</h1>
                 <div className={styles.profileId}>
                     <p>id: {profileId}</p>
-                    <a href={steamUrl} target='_blank'><SteamSVG /></a>
+                    <a href={steamUrl} target='_blank' rel="noopener noreferrer" aria-label='Steam profile'><SteamSVG /></a>
                 </div>
 
             </div>

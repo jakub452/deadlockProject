@@ -58,7 +58,7 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
         include_player_final_stats: true,
         order_by: "start_time",
         order_direction: "desc",
-        limit: 10,
+        limit: 20,
     })
 
     const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`

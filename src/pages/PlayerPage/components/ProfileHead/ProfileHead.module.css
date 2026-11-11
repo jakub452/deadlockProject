@@ -32,10 +32,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 110px;
-    width: 100%;
     font-size: 0.9rem;
     color: var(--ls-text-muted);
+    gap: 10px;
 }
 
 

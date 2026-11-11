@@ -38,12 +38,29 @@ export default function formatMatch(match, heroesData, itemsData) {
         return rtf.format(-Math.floor(months / 12), "year")
     }
 
+    const compact = new Intl.NumberFormat("en", {
+        notation: "compact",
+        maximumFractionDigits: 1,
+    })
+    function formatSouls(souls) {
+        return compact.format(souls)
+    }
+
+    function formatSlots(items) {
+        const slots = []
+        for(let i = 0; i < 12; i++){
+            slots.push(items[i])
+        }
+        return slots
+    }
+    
     const player = match.players[0]
     const hero = heroesData.find(hero => hero.id === player.hero_id)
     const item = player.items
-        .filter(item => item?.sold_time_s === 0)
-        .map(item => itemsData.find(asset => asset?.id == item?.item_id))
-        .filter(item => item?.type === "upgrade")
+    .filter(item => item?.sold_time_s === 0)
+    .map(item => itemsData.find(asset => asset?.id == item?.item_id))
+    .filter(item => item?.type === "upgrade")
+    
 
     return {
         result: match.players[0].player_match_outcome,
@@ -58,15 +75,10 @@ export default function formatMatch(match, heroesData, itemsData) {
         deaths: player.deaths,
         assists: player.assists,
         kda: ((player.kills + player.assists) / Math.max(player.deaths, 1)).toFixed(2),
-        souls: player.net_worth,
+        souls: formatSouls(player.net_worth),
         lastHits: player.last_hits,
         denies: player.denies,
-        items:
-            item.map(asset => ({
-                name: asset.name,
-                image: asset.shop_image_webp,
-                id: asset.id
-            }))
+        items: formatSlots(item)
 
     }
 }

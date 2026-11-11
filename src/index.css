@@ -132,10 +132,6 @@ body {
   color: var(--ls-text);
 }
 
-*::before, *::after{
-  box-sizing: border-box;
-}
-
 h1, h2{
   font-family: var(--ls-font-display);
 }

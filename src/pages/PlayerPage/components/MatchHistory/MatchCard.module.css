@@ -1,84 +1,119 @@
 .container{
     display: flex;
     align-items: center;
+
     border-radius: 8px;
+    max-width: 895px;
     width: 100%;
     margin-bottom: 0.5rem;
-    height: 10vh;
+
+    height: 90px;
 }
 
-
+.infoWrapper{
+    display: flex;
+    align-items: center;
+    width: 330px;
+}
 
 .matchText{
-
     display: flex;
-    align-items: start;
-    justify-content: center;
     flex-direction: column;
-
-    height: 100%;
     margin-left: 1rem;
-    width: 10%;
+    max-width: 80px;
+    width: 100%;
+    gap: 5px;
 }
+.matchMode{
+    font-size: 0.9rem;
+}
+.matchDuration{
+    font-size: 0.8rem;
+    color: var(--ls-text-muted);
+}
+.matchTimeSince{
+    font-size: 0.8rem;
+    color: var(--ls-text-muted);
+}
+
 
 .matchHero{
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: 10%;
+    width: 50px;
     text-align: center;
     font-size: 0.9rem;
-    
 }
 .matchKda{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: 10%;
-    overflow: hidden;
+    width: 90px;
 }
+.deaths{
+    color: rgb(255, 96, 96);
+}
+.matchKdaCalc{
+    font-size: 0.9rem;
+    color: var(--ls-text-muted);
+}
+
 .matchStats{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 20%;
+    flex-direction: column;
+    width: 80px;
 
 }
-
-.heroIcon img{
-    width: 3rem;
+.matchStatsSouls{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-.win{
+
+.Win{
     background-color: var(--ls-win-bg);
     border: 2px solid var(--ls-win-border);
     border-left: 6px solid var(--ls-win);
 
 }
+.winText{
+    color: var(--ls-win);
+    font-weight: bold;
+}
 
-.lose{
+.Loss{
     background-color: var(--ls-loss-bg);
     border: 2px solid var(--ls-loss-border);
     border-left: 6px solid var(--ls-loss);
 }
+.loseText{
+    color: var(--ls-loss);
+}
 .itemList{
     display: flex;
     align-items: center;
-    /* justify-content: center; */
-    overflow-x: scroll;
+    justify-content: center;
+    width: 530px;
 
-    width: 40%;
+    gap: 5px;
 }
 .item{
-    width: 2rem;
-    height: 2rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    background-color: var(--ls-surface);
 }
-.itemList div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin-right: 2rem;
+.itemImg{
+    width: 100%;
+}
+
+.vitality{
+    border: 2px solid var(--ls-item-vitality);
+}
+.weapon{
+    border: 2px solid var(--ls-item-weapon);
+}
+.spirit{
+    border: 2px solid var(--ls-item-spirit);
 }

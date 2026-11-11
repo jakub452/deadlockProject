@@ -11,11 +11,8 @@ const MatchHistory = ({ id }) => {
     async function loadMatchHistoryData() {
         try {
             const data = await getPlayerMatchHistoryData(id)
-            const Ids = data.slice(0,10).map(match => match.match_id)
-            console.log(Ids)
-            
+            const Ids = data.slice(0,20).map(match => match.match_id)            
             const metadata = await getPlayerMatchHistoryMetadata(Ids, id)
-            console.log(metadata)
             setMatchMetadata(metadata)
 
         } catch (err) {

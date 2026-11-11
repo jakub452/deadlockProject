@@ -13,7 +13,7 @@ const SearchBar = () => {
     e.preventDefault()
     const inputDataTrim = inputData.trim()
     if (!/^[0-9]{17}$/.test(inputDataTrim)) {
-      alert('Nieprawidłowy steamID')
+      console.log('nieprawidłowy steamID')
       return
     }
     navigate(`/profile/${inputDataTrim}`)

@@ -1,36 +1,37 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background-color: var(--ls-bg);
+  margin-top: 16px;
 }
 
 .profileHead {
-  width: 100%;
+  width: 1200px;
+  border-radius: 8px;
   background-color: var(--ls-bg-header);
   border: 1px solid var(--ls-border);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .profileBody {
   display: flex;
   align-items: start;
   justify-content: center;
-  width: 60%;
+  width: 1200px;
 
 }
 .profileLeft {
-  width: 30%;
+  width: 600px;
 }
 .profileRight {
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 70%;
+  width: 870px;
   
 }
 

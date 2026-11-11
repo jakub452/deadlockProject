@@ -2,81 +2,41 @@
     display: flex;
     align-items: center;
     justify-content: start;
-
-    width: 60%;
-    height: 20vh;    
-
+    padding: 20px;
+    height: 100px;
 
 }
-.icon{
-    margin-right: 1.2rem;
-}
-.iconIMG{
-    width: 8rem;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid var(--ls-accent);
-    transition: border 0.1s;
+
+.avatar{
+    width: 100px;
+    border: 1px solid var(--ls-accent);
+    border-radius: 4px;
 }
 
-.wrapper{
+.profileText{
+    height: 100px;
     display: flex;
     align-items: start;
-    justify-content: space-evenly;
+    justify-content: start;
     flex-direction: column;
-    height: 70%;
+    margin-left: 10px;
+    gap: 5px;
 }
-.text{
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    height: 40%;
-    
-}
-.name{
+.profileName{
     font-size: 2rem;
+    color: var(--ls-text);
 }
-.subtextContainer{
+
+.profileId{
     display: flex;
+    width: 115px;
     align-items: center;
-    justify-content: center;
-
-}
-.subtext{
-    font-size: 0.8rem;
-    color: var(--ls-text-muted);
-    margin-right: 1rem;
-    line-height: 2rem;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--ls-muted);
 }
 
 
 
 
-.buttons{
-    height: 30%;
-
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    width: 100%;
-}
-.profileHeadButton{
-    cursor: pointer;
-    outline: none;
-    border: none;
-    margin-right: 1rem;
-
-    background-color: var(--ls-accent);
-    padding: 0.6rem;
-    color: var(--ls-on-accent);
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-.profileHeadButton:hover{
-    background-color: var(--ls-accent-hover);
-}
 

@@ -11,6 +11,10 @@ export default function formatMatch(match, heroesData, itemsData) {
         return `${min}:${String(sec).padStart(2, "0")}`
     }
 
+    function formatTimeSince(date) {
+        console.log(date)
+    }
+
     const player = match.players[0]
     const hero = heroesData.find(hero => hero.id === player.hero_id)
     const item = player.items
@@ -22,6 +26,7 @@ export default function formatMatch(match, heroesData, itemsData) {
         result: match.players[0].player_match_outcome,
         mode: match.match_mode,
         duration: formatDuration(match.duration_s),
+        timeSince: formatTimeSince(match.start_time),
         hero: {
             name: hero?.name,
             icon: hero?.images?.icon_image_small

@@ -17,11 +17,11 @@ const Navbar = () => {
                         onClick={() => {navigate('/')}}
                     />
                     <nav>
-                        <ul>
-                            <li><a href="#">Stats</a></li>
-                            <li><a href="#">Heroes</a></li>
-                            <li><a href="#">Leaderboards</a></li>
-                            <li><a href="#">Builds</a></li>
+                        <ul className={styles.navbarList}>
+                            <li className={styles.navbarListElement}><a className={styles.navbarLink} href="#">Stats</a></li>
+                            <li className={styles.navbarListElement}><a className={styles.navbarLink} href="#">Heroes</a></li>
+                            <li className={styles.navbarListElement}><a className={styles.navbarLink} href="#">Leaderboards</a></li>
+                            <li className={styles.navbarListElement}><a className={styles.navbarLink} href="#">Builds</a></li>
                         </ul>
                     </nav>
                 </div>

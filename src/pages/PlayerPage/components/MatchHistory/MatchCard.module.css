@@ -1,68 +1,93 @@
 .container{
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
     border-radius: 8px;
     max-width: 895px;
     width: 100%;
     margin-bottom: 0.5rem;
 
-    height: 90px;
+    height: 100px;
 }
 
 .infoWrapper{
     display: flex;
     align-items: center;
-    width: 330px;
+    width: 600px;
 }
 
 .matchText{
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
-    max-width: 80px;
+    justify-content: center;
+    margin-left: 16px;
+    max-width: 130px;
     width: 100%;
-    gap: 5px;
+    height: 100px;
+    gap: 8px;
+}
+
+.matchResult{
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 .matchMode{
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 .matchDuration{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--ls-text-muted);
 }
 .matchTimeSince{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--ls-text-muted);
 }
 
 
 .matchHero{
     display: flex;
-    flex-direction: column;
-    width: 50px;
+    flex-direction: row;
+    min-width: 160px;
+    width: 100%;
     text-align: center;
-    font-size: 0.9rem;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+.heroIcon{
+    width: 65px;
+    background-color: var(--ls-surface-3);
+    border-radius: 8px;
+    border: 2px solid var(--ls-border-strong);
 }
 .matchKda{
     display: flex;
-    align-items: center;
+    align-items: start;
+    justify-content: center;
     flex-direction: column;
-    width: 90px;
+    min-width: 130px;
+    width: 100%;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+
 }
+
 .deaths{
-    color: rgb(255, 96, 96);
+    color: var(--ls-loss);
 }
 .matchKdaCalc{
     font-size: 0.9rem;
     color: var(--ls-text-muted);
 }
-
+.gold{
+    color: var(--ls-accent-text);
+}
 .matchStats{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 80px;
+    min-width: 80px;
+    width: 100%;
 
 }
 .matchStatsSouls{
@@ -77,6 +102,9 @@
     border-left: 6px solid var(--ls-win);
 
 }
+.Win .heroIcon{
+    border-color: var(--ls-win-border);
+}
 .winText{
     color: var(--ls-win);
     font-weight: bold;
@@ -90,18 +118,30 @@
 .loseText{
     color: var(--ls-loss);
 }
+.Loss .heroIcon{
+    border-color: var(--ls-loss-border);
+}
+.matchStatsSoulsText{
+    font-size: 0.8rem;
+    color: var(--ls-text-muted);
+}
 .itemList{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 530px;
-
-    gap: 5px;
+    flex-wrap: wrap;
+    min-width: 300px;
+    width: 300px;
+    gap: 10px;
+    margin-right: 16px;
 }
 .item{
+    overflow: hidden;
     width: 35px;
     height: 35px;
     border-radius: 4px;
+
+    border: 3px solid var(--ls-surface);
     background-color: var(--ls-surface);
 }
 .itemImg{

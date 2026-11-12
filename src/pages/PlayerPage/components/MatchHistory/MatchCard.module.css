@@ -60,6 +60,9 @@
     border-radius: 8px;
     border: 2px solid var(--ls-border-strong);
 }
+.matchHeroName{
+    text-align: start;
+}
 .matchKda{
     display: flex;
     align-items: start;

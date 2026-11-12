@@ -15,7 +15,7 @@ const MatchCard = ({ match, heroesData, itemsData }) => {
                 </div>
                 <div className={styles.matchHero}>
                     <img src={m.hero.icon} alt={m.hero.name} className={styles.heroIcon} title={m.hero.name} />
-                    <p>{m.hero.name}</p>
+                    <p className={styles.matchHeroName}>{m.hero.name}</p>
                 </div>
                 <div className={styles.matchKda}>
                     <p className={styles.matchKdaStats}>{m.kills} / <span className={styles.deaths}>{m.deaths}</span> / {m.assists}</p>

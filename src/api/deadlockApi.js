@@ -58,7 +58,7 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
         include_player_final_stats: true,
         order_by: "start_time",
         order_direction: "desc",
-        limit: 20,
+        limit: 5,
     })
 
     const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`
@@ -67,6 +67,7 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
         throw new Error(`Res error: ${res.status}`)
     }
     const result = await res.json();
+    console.log(result)
     return result
 
 }
@@ -80,7 +81,6 @@ export async function getPlayerRank(playerId) {
     const result = await res.json();
     return result
 }
-
 
 export async function getRankData(rank) {
     const url = `https://api.deadlock-api.com/v1/assets/ranks/${rank}`

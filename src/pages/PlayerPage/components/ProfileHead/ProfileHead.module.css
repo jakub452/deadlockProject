@@ -1,9 +1,29 @@
 .container{
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    min-width: 1200px;
+    width: 100%;
+}
+.left{
+    display: flex;
+    align-items: center;
     justify-content: start;
     padding: 20px;
     height: 100px;
+}
+
+.right{
+    height: 100px;
+    padding: 20px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
 
 }
 
@@ -36,6 +56,7 @@
     color: var(--ls-text-muted);
     gap: 10px;
 }
+
 
 
 

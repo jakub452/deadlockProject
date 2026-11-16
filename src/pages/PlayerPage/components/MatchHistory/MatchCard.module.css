@@ -62,6 +62,7 @@
 }
 .matchHeroName{
     text-align: start;
+    width: 70px;
 }
 .matchKda{
     display: flex;

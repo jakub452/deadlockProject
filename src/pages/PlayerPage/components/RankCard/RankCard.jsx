@@ -1,31 +1,6 @@
-import { useEffect, useState } from 'react'
 import styles from './RankCard.module.css'
-import { getPlayerRank, getRankData } from '../../../../api/deadlockApi'
 
-const RankCard = ({ id }) => {
-
-    const [playerRank, setPlayerRank] = useState([])
-    const [rankData, setRankData] = useState([])
-
-    useEffect(() => {
-        if (!id) {
-            return
-        }
-        async function load(id) {
-            try {
-                const rank = await getPlayerRank(id)
-                setPlayerRank(rank)
-
-                const rankAsset = await getRankData(rank.rank)
-                setRankData(rankAsset)
-            } catch (err) {
-                console.log(err.message)
-            }
-        }
-
-        load(id)
-    }, [id])
-
+const RankCard = ({ rankData, playerRank }) => {
     return (
         <div className={styles.container}>
             <p className={styles.rankTitle}>Rank</p>

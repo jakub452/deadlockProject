@@ -42,6 +42,20 @@
   --ls-border: var(--ls-ink-700);
   --ls-border-strong: var(--ls-ink-600);
 
+  /* rangi */
+  --ls-obscurus:  #656361;
+  --ls-initiate:  #946450;
+  --ls-seeker:    #84786C;
+  --ls-acolyte:   #7B8889;
+  --ls-sentinel:  #AD8156;
+  --ls-mystic:    #93A1B6;
+  --ls-ritualist: #C1A355;
+  --ls-emissary:  #90B2B9;
+  --ls-oracle:    #A5B4D6;
+  --ls-phantom:   #8A8ACC;
+  --ls-ascendant: #CB995C;
+  --ls-eternus:   #7FC5B0;
+
   --ls-text: var(--ls-sand-100);         /* tekst główny */
   --ls-text-muted: var(--ls-sand-400);   /* tekst drugorzędny */
   --ls-text-subtle: var(--ls-sand-500);  /* etykiety, podpisy */

@@ -7,7 +7,7 @@ import MatchHistory from "./components/MatchHistory/MatchHistory"
 import RankCard from "./components/RankCard/RankCard"
 import Loading from "../Loading/Loading"
 
-const PlayerPage = () => {
+const PlayerPage = ({ heroesData, itemsData }) => {
   const { id } = useParams()
 
   // TD: 
@@ -24,8 +24,7 @@ const PlayerPage = () => {
   const [rankData, setRankData] = useState([])
   const [playerMatchHistory, setPlayerMatchHistory] = useState([])
   const [matchMetadata, setMatchMetadata] = useState([])
-  const [heroesData, setHeroesData] = useState([])
-  const [itemsData, setItemsData] = useState([])
+
   const [loading, setLoading] = useState(false)
 
 
@@ -44,21 +43,18 @@ const PlayerPage = () => {
       const matchHistory = await getPlayerMatchHistoryData(id)
       setPlayerMatchHistory(matchHistory)
 
-      const heroesData = await getAllHeroes()
-      setHeroesData(heroesData)
-
       const playerMatchHistoryData = await getPlayerMatchHistoryData(id)
       const Ids = playerMatchHistoryData.slice(0, 10).map(match => match.match_id)
       const metadata = await getPlayerMatchHistoryMetadata(Ids, id)
       setMatchMetadata(metadata)
 
-      const itemsData = await getItemsData()
-      setItemsData(itemsData)
+
 
     } catch (err) {
       console.log(err.message)
     } finally {
       setLoading(false)
+      console.log(`downloaded: playerData`)
     }
   }
 

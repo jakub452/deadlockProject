@@ -10,7 +10,6 @@
   width: 100%;
   border-radius: 8px;
   background-color: var(--ls-bg-header);
-  border: 1px solid var(--rank);
   display: flex;
   justify-content: start;
 
@@ -43,50 +42,9 @@
   width: 100%;
 }
 
-.obscurus {
-  --rank: var(--ls-obscurus);
-}
-
-.initiate {
-  --rank: var(--ls-initiate);
-}
-
-.seeker {
-  --rank: var(--ls-seeker);
-}
-
-.acolyte {
-  --rank: var(--ls-acolyte);
-}
-
-.sentinel {
-  --rank: var(--ls-sentinel);
-}
-
-.mystic {
-  --rank: var(--ls-mystic);
-}
-
-.ritualist {
-  --rank: var(--ls-ritualist);
-}
-
-.emissary {
-  --rank: var(--ls-emissary);
-}
-
-.oracle {
-  --rank: var(--ls-oracle);
-}
-
-.phantom {
-  --rank: var(--ls-phantom);
-}
-
-.ascendant {
-  --rank: var(--ls-ascendant);
-}
-
-.eternus {
-  --rank: var(--ls-eternus);
+.loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
 }

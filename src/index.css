@@ -1,6 +1,7 @@
 :root {
   box-sizing: border-box;
-
+  scrollbar-width: thin;
+  scrollbar-color: var(--ls-border-strong) transparent;
   --ls-font-display: "Cinzel", Georgia, serif;
   --ls-font-body: "Barlow", system-ui, sans-serif;
 
@@ -26,44 +27,60 @@
   --ls-orange-300: #E0855A;
   --ls-orange-700: #A2461A;
 
-  --ls-item-weapon: #C9773E;   /* Broń */
-  --ls-item-vitality: #6FAE5A; /* Witalność */
-  --ls-item-spirit: #9B7AD8;   /* Duch */
+  --ls-item-weapon: #C9773E;
+  /* Broń */
+  --ls-item-vitality: #6FAE5A;
+  /* Witalność */
+  --ls-item-spirit: #9B7AD8;
+  /* Duch */
 
   /* Drużyny */
-  --ls-team-amber: #E0A040;    /* Amber Hand */
-  --ls-team-sapphire: #5B8FE0; /* Sapphire Flame */
+  --ls-team-amber: #E0A040;
+  /* Amber Hand */
+  --ls-team-sapphire: #5B8FE0;
+  /* Sapphire Flame */
 
-  --ls-bg: var(--ls-ink-950);            /* tło strony */
-  --ls-bg-header: var(--ls-ink-900);     /* nagłówek, pasek profilu */
-  --ls-surface: var(--ls-ink-850);       /* karty, panele */
-  --ls-surface-2: var(--ls-ink-800);     /* pola tekstowe, zagnieżdżone panele */
-  --ls-surface-3: var(--ls-ink-750);     /* chipy, selecty, hover */
+  --ls-bg: var(--ls-ink-950);
+  /* tło strony */
+  --ls-bg-header: var(--ls-ink-900);
+  /* nagłówek, pasek profilu */
+  --ls-surface: var(--ls-ink-850);
+  /* karty, panele */
+  --ls-surface-2: var(--ls-ink-800);
+  /* pola tekstowe, zagnieżdżone panele */
+  --ls-surface-3: var(--ls-ink-750);
+  /* chipy, selecty, hover */
   --ls-border: var(--ls-ink-700);
   --ls-border-strong: var(--ls-ink-600);
 
   /* rangi */
-  --ls-obscurus:  #656361;
-  --ls-initiate:  #946450;
-  --ls-seeker:    #84786C;
-  --ls-acolyte:   #7B8889;
-  --ls-sentinel:  #AD8156;
-  --ls-mystic:    #93A1B6;
+  --ls-obscurus: #656361;
+  --ls-initiate: #946450;
+  --ls-seeker: #84786C;
+  --ls-acolyte: #7B8889;
+  --ls-sentinel: #AD8156;
+  --ls-mystic: #93A1B6;
   --ls-ritualist: #C1A355;
-  --ls-emissary:  #90B2B9;
-  --ls-oracle:    #A5B4D6;
-  --ls-phantom:   #8A8ACC;
+  --ls-emissary: #90B2B9;
+  --ls-oracle: #A5B4D6;
+  --ls-phantom: #8A8ACC;
   --ls-ascendant: #CB995C;
-  --ls-eternus:   #7FC5B0;
+  --ls-eternus: #7FC5B0;
 
-  --ls-text: var(--ls-sand-100);         /* tekst główny */
-  --ls-text-muted: var(--ls-sand-400);   /* tekst drugorzędny */
-  --ls-text-subtle: var(--ls-sand-500);  /* etykiety, podpisy */
+  --ls-text: var(--ls-sand-100);
+  /* tekst główny */
+  --ls-text-muted: var(--ls-sand-400);
+  /* tekst drugorzędny */
+  --ls-text-subtle: var(--ls-sand-500);
+  /* etykiety, podpisy */
 
-  --ls-accent: var(--ls-gold-400);       /* przyciski, linki, logo */
+  --ls-accent: var(--ls-gold-400);
+  /* przyciski, linki, logo */
   --ls-accent-hover: var(--ls-gold-300);
-  --ls-accent-text: var(--ls-gold-400);  /* złoty tekst na tle */
-  --ls-on-accent: #17140F;               /* tekst na złotym przycisku */
+  --ls-accent-text: var(--ls-gold-400);
+  /* złoty tekst na tle */
+  --ls-on-accent: #17140F;
+  /* tekst na złotym przycisku */
 
   --ls-win: var(--ls-blue-300);
   --ls-win-bg: #141A24;
@@ -71,7 +88,8 @@
   --ls-loss: var(--ls-orange-300);
   --ls-loss-bg: #1D1611;
   --ls-loss-border: #3E2A20;
-  --ls-on-result: #17140F;               /* tekst na pełnym kolorze W/L */
+  --ls-on-result: #17140F;
+  /* tekst na pełnym kolorze W/L */
 
   --ls-focus: var(--ls-gold-300);
   --ls-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -146,10 +164,12 @@ body {
   color: var(--ls-text);
 }
 
-h1, h2{
+h1,
+h2 {
   font-family: var(--ls-font-display);
 }
-*{
+
+* {
   padding: 0;
   margin: 0;
 }
@@ -160,45 +180,132 @@ h1, h2{
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
+
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }

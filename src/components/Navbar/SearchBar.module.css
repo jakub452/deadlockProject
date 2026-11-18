@@ -48,18 +48,24 @@ form button:hover{
     position: absolute;
     left: 0;
     right: 0;
-    top: 3.5rem;
-    z-index: 111;
+    top: 45px;
+
+    border: 1px solid var(--ls-border-strong);
 
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: 91.5%;
-    padding: 1rem;
+    width: 97%;
+    border-radius: 4px;
+    
 
-    background-color: var(--ls-surface-2);
-    border-radius: 8px;
+    background-color: var(--ls-surface);
+    padding: 5px;
+    padding-top: 10px;
+
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .searchResultCard{
@@ -67,9 +73,9 @@ form button:hover{
     align-items: center;
     justify-content: start;
     background-color: var(--ls-surface);
-    width: 100%;
-    margin: 0.2rem;
-    padding: 0.5rem;
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
     border: 1px solid var(--ls-border-strong);
     border-radius: 8px;
 }

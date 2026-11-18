@@ -1,23 +1,35 @@
-.container{
-    border: 1px solid var(--ls-border);
+.container {
+    border: 1px solid var(--rank);
     background-color: var(--ls-surface);
+
     border-radius: 8px;
     padding: 16px;
 }
-.rankTitle{
+
+.rankTitle {
     font-size: 1.2rem;
     color: var(--ls-text-muted);
     margin-bottom: 8px;
     font-weight: bold;
     letter-spacing: 1px;
 }
-.rankImg{
-    width: 80px;
+
+.rankImgContainer {
     border-radius: 8px;
-    background-color: var(--ls-surface-2);
-    padding: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 4px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='100' height='100' preserveAspectRatio='none' viewBox='0 0 100 100'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1039%26quot%3b)' fill='none'%3e%3cpath d='M0 15.91C2.35 7.69 0.96 3.93 7.14 0C13.46 -4.02 16.07 0 25 0C37.5 0 37.5 0 50 0C62.5 0 62.5 0 75 0C86.6 0 86.7 -0.4 98.21 0C99.2 0.03 99.93 -0.09 100 0.86C100.83 12.41 100 12.93 100 25C100 35.61 101.81 36.46 100 46.21C99.49 48.96 95.37 47.92 95.37 50C95.37 52.42 99.4 51.95 100 55.21C101.71 64.45 100 65.11 100 75C100 83.8 100.88 83.94 100 92.59C99.61 96.44 100.7 99.04 97.47 100C88.2 102.75 86.24 100 75 100C62.5 100 62.5 100 50 100C37.5 100 37.5 100 25 100C12.5 100 7.17 105.33 0 100C-5.33 96.03 -2.72 89.33 0 81.39C1.57 76.83 7.9 79.66 8.58 75C10.19 63.97 7.35 62.31 4.59 50C3.06 43.19 1.25 43.56 0 36.76C-1.05 31.06 0 30.88 0 25C0 20.45 -1.22 20.19 0 15.91' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M9.24 25C9.89 12.29 13.27 10.52 19.9 0C21.15 -1.98 22.45 0 25 0C37.5 0 37.5 0 50 0C59.78 0 60.46 -1.79 69.55 0C72.96 0.67 72.05 2.75 75 4.92C87.27 13.95 88.48 13.16 100 22.41C100.98 23.2 100 23.7 100 25C100 26.13 100.81 26.51 100 27.27C88.31 38.29 87.88 38.6 75 48.56C73.18 49.97 72.7 49.04 70.59 50C60.2 54.76 59.01 53.32 50 60C42.16 65.82 38.84 66.2 36.88 75C34.39 86.2 44.74 92.36 41.11 100C38.8 104.86 33.05 100 25 100C12.5 100 8.52 103.98 0 100C-3.98 98.14 -3.07 92.62 0 88.33C5.88 80.12 13.82 84.04 17.91 75C22.49 64.87 19.46 62.19 17.35 50C15.13 37.19 8.61 37.29 9.24 25' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M56.45 100C56.45 93.98 66.32 79.82 75 79.82C82.88 79.82 89.56 93.63 89.56 100C89.56 103.72 82.28 100 75 100C65.72 100 56.45 104.07 56.45 100' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M22.83 25C22.83 22.32 23.65 22.24 25 19.74C30.41 9.74 28.54 6.17 36.36 0C41.04 -3.7 43.18 0 50 0C54.09 0 54.86 -2.01 58.18 0C67.36 5.57 66.33 7.9 75 15.16C81.26 20.4 88.04 19.83 88.04 25C88.04 30.52 82.71 33.16 75 36.54C63.69 41.49 62.2 42.74 50 41.67C37.2 40.54 35.62 38.66 25 32.14C22.04 30.32 22.83 28.52 22.83 25' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 95.28C10.55 91.06 15.28 88.32 25 90C28.89 90.68 27.22 95.89 27.22 100C27.22 100.89 26.11 100 25 100C12.5 100 10.51 101.99 0 100C-1.99 99.63 -1.95 96.06 0 95.28' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M66.53 100C66.53 97.25 71.04 90.79 75 90.79C78.6 90.79 81.65 97.1 81.65 100C81.65 101.7 78.32 100 75 100C70.76 100 66.53 101.86 66.53 100' stroke='rgba(36%2c 33%2c 27%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1039'%3e%3crect width='100' height='100' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-position: center;
+    box-shadow: inset 1px 1px 20px 5px rgba(0, 0, 0, 0.299);
 }
-.rankInfo{
+
+.rankImg {
+    width: 80px;
+    z-index: 999;
+}
+
+.rankInfo {
     display: flex;
     align-items: center;
 
@@ -26,10 +38,68 @@
     color: var(--ls-text);
 }
 
-.rankText{
+.rankText {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     width: 155px;
-    height: 80px;
+    height: 90px;
+    font-weight: bold;
+    color: var(--rank);
+    gap: 15px;
+
+}
+.progressBar{
+    text-align: start;
+    content: "";
+    color: var(--ls-text-muted);
+    font-size: 0.9rem;
+}
+.obscurus {
+    --rank: var(--ls-obscurus);
+}
+
+.initiate {
+    --rank: var(--ls-initiate);
+}
+
+.seeker {
+    --rank: var(--ls-seeker);
+}
+
+.acolyte {
+    --rank: var(--ls-acolyte);
+}
+
+.sentinel {
+    --rank: var(--ls-sentinel);
+}
+
+.mystic {
+    --rank: var(--ls-mystic);
+}
+
+.ritualist {
+    --rank: var(--ls-ritualist);
+}
+
+.emissary {
+    --rank: var(--ls-emissary);
+}
+
+.oracle {
+    --rank: var(--ls-oracle);
+}
+
+.phantom {
+    --rank: var(--ls-phantom);
+}
+
+.ascendant {
+    --rank: var(--ls-ascendant);
+}
+
+.eternus {
+    --rank: var(--ls-eternus);
 }

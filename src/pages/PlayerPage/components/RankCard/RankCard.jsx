@@ -19,7 +19,12 @@ const RankCard = ({ rankData, playerRank, playerMatchHistory }) => {
             .filter(m => m?.player_match_outcome === 2)
         const winratio = (wins.length / (wins.length+loses.length)*100)
 
-        setWinratio(winratio.toFixed(2))
+        if(!winratio > 0){
+            setWinratio(0)
+        } else {
+            setWinratio(winratio.toFixed(2))
+        }
+
         setWins(wins.length)
         setLoses(loses.length)
     }, [playerMatchHistory]);

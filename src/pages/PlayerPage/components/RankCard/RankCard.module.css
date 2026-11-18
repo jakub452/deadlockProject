@@ -3,7 +3,7 @@
     background-color: var(--ls-surface);
 
     border-radius: 8px;
-    padding: 16px;
+    padding: 8px;
 }
 
 .rankTitle {
@@ -36,6 +36,8 @@
     font-size: 1.5rem;
     text-transform: uppercase;
     color: var(--ls-text);
+
+    gap: 10px;
 }
 
 .rankText {
@@ -43,11 +45,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 155px;
-    height: 90px;
     font-weight: bold;
     color: var(--rank);
     gap: 15px;
+    width: 165px;
 
 }
 .progressBar{

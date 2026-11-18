@@ -10,6 +10,15 @@ import Loading from "../Loading/Loading"
 const PlayerPage = () => {
   const { id } = useParams()
 
+  // TD: 
+  // heroesdata and itemsdata cache on website beacuse its big request
+  // fix methods for api fetching
+  // load function in diferent place so it looks nice and readable
+  // player individual hero data
+  // winratio bar or circle with selecable seasons
+  // better player searching
+  // fix css so it doesnt look ugly
+
   const [playerSteamData, setPlayerSteamData] = useState([])
   const [playerRank, setPlayerRank] = useState([])
   const [rankData, setRankData] = useState([])
@@ -39,7 +48,7 @@ const PlayerPage = () => {
       setHeroesData(heroesData)
 
       const playerMatchHistoryData = await getPlayerMatchHistoryData(id)
-      const Ids = playerMatchHistoryData.slice(0, 20).map(match => match.match_id)
+      const Ids = playerMatchHistoryData.slice(0, 10).map(match => match.match_id)
       const metadata = await getPlayerMatchHistoryMetadata(Ids, id)
       setMatchMetadata(metadata)
 

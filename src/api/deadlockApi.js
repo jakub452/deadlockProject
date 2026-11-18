@@ -11,10 +11,10 @@ export async function getPlayerData(steamID) {
 export async function searchPlayer(input) {
     const params = new URLSearchParams({
         search_query: input,
-        limit: 30,
-        min_matches_played_last_30d: 1,
+        limit: 10,
+        min_matches_played_last_30d: 5,
         min_last_team_avg_badge: 0,
-        matches_played_weight: 0.5,
+        matches_played_weight: 0.02,
     })
 
     const url = `https://api.deadlock-api.com/v1/players/steam-search?${params}`
@@ -51,11 +51,11 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
     const params = new URLSearchParams({
         match_ids: ids,
         account_ids: accountId,
-        only_filtered_players: true,
-        include_info: true,
+        // only_filtered_players: true,
+        // include_info: true,
         include_player_info: true,
         include_player_items: true,
-        include_player_final_stats: true,
+        // include_player_final_stats: true,
         order_by: "start_time",
         order_direction: "desc",
         limit: 10,

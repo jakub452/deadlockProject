@@ -42,33 +42,11 @@ export async function fetchAssets() {
         fetch(`https://api.deadlock-api.com/v1/assets/heroes`),
         fetch(`https://api.deadlock-api.com/v1/assets/ranks`)
     ])
-    if(!itemsRes.ok || !heroesRes.ok) {
+    if (!itemsRes.ok || !heroesRes.ok) {
         throw new Error(`Res error: ${itemsRes.status} ${heroesRes.status} ${ranksRes.status}`)
     }
-    const [heroes, items, ranks] = await Promise.all([heroesRes.json(), itemsRes.json()])
+    const [heroes, items, ranks] = await Promise.all([heroesRes.json(), itemsRes.json(), ranksRes.json()])
     return { heroes, items, ranks }
-}
-
-export async function getPlayerMatchHistoryMetadata(ids, accountId) {
-
-    const params = new URLSearchParams({
-        match_ids: ids,
-        account_ids: accountId,
-        include_player_info: true,
-        include_player_items: true,
-        order_by: "start_time",
-        order_direction: "desc",
-        limit: 10,
-    })
-
-    const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
-
 }
 
 export async function getPlayerRank(playerId) {
@@ -90,6 +68,31 @@ export async function getRankData(rank) {
     const result = await res.json();
     return result
 }
+
+
+export async function getPlayerMatchHistoryMetadata(accountID) {
+
+    const params = new URLSearchParams({
+        account_ids: accountID,
+        only_filtered_players: true,
+        include_player_info: true,
+        include_player_items: true,
+        order_by: "start_time",
+        order_direction: "desc",
+        limit: 10,
+    })
+
+    const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error(`Res error: ${res.status}`)
+    }
+    const result = await res.json();
+    return result
+
+}
+
+
 
 export async function getMatchMetadata(matchID) {
     const url = `https://api.deadlock-api.com/v1/matches/${matchID}/metadata`

@@ -58,8 +58,8 @@ export default function formatMatch(match, heroesData, itemsData) {
     const hero = heroesData.find(hero => hero.id === player.hero_id)
     const item = player.items
     .filter(item => item?.sold_time_s === 0)
-    .map(item => itemsData.find(asset => asset?.id == item?.item_id))
-    .filter(item => item?.type === "upgrade")
+    .map(item => itemsData.find(asset => asset?.id === item?.item_id))
+    .filter(Boolean)
     
 
     return {

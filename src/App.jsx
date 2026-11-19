@@ -7,7 +7,8 @@ import { useAssets } from './hooks/useAssets.js';
 import Loading from './pages/Loading/Loading.jsx';
 
 function App() {
-  const { assets, isLoading} = useAssets()
+  const { assets, isLoading } = useAssets()
+  
 
   if(isLoading) return (
     <Loading />

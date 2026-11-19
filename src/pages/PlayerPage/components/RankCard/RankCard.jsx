@@ -34,7 +34,7 @@ const RankCard = ({ rankData, playerRank, playerMatchHistory }) => {
             <p className={styles.rankTitle}>Rank</p>
             <div className={styles.rankInfo}>
                 <div className={styles.rankImgContainer}>
-                    <img className={styles.rankImg} src={rankData?.images?.[`large_subrank${playerRank?.subrank}`] ?? rankData?.images?.small} alt={rankData.name} />
+                    <img className={styles.rankImg} src={rankData?.images?.[`large_subrank${playerRank?.subrank}`] ?? rankData?.images?.large} alt={rankData.name} />
                 </div>
                 <div className={styles.rankText}>
                     <p>{rankData.name} {playerRank.subrank}</p>

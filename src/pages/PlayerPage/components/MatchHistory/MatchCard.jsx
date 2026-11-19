@@ -36,8 +36,8 @@ const MatchCard = ({ match, heroesData, itemsData }) => {
             <div className={styles.itemList}>
                 {
                     m.items.map(item => (
-                        <div className={`${styles.item} ${styles[item?.item_slot_type]}`}>
-                            {item && <img src={item?.shop_image_webp} alt={item?.name} className={styles.itemImg} title={item?.name} />}
+                        <div key={item?.id} className={`${styles.item} ${styles[item?.item_slot_type]}`}>
+                            {item && <img key={item?.id} src={item?.shop_image_webp} alt={item?.name} className={styles.itemImg} title={item?.name} />}
                         </div>
                     ))
                 }

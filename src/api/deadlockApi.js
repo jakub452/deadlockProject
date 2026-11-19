@@ -36,14 +36,17 @@ export async function getPlayerMatchHistoryData(id) {
 
 }
 
-export async function getItemsData() {
-    const url = 'https://api.deadlock-api.com/v1/assets/items'
-    const res = await fetch(url)
-    if(!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
+export async function fetchAssets() {
+    const [itemsRes, heroesRes, ranksRes] = await Promise.all([
+        fetch(`https://api.deadlock-api.com/v1/assets/items/by-type/upgrade`),
+        fetch(`https://api.deadlock-api.com/v1/assets/heroes`),
+        fetch(`https://api.deadlock-api.com/v1/assets/ranks`)
+    ])
+    if(!itemsRes.ok || !heroesRes.ok) {
+        throw new Error(`Res error: ${itemsRes.status} ${heroesRes.status} ${ranksRes.status}`)
     }
-    const result = await res.json()
-    return result
+    const [heroes, items, ranks] = await Promise.all([heroesRes.json(), itemsRes.json()])
+    return { heroes, items, ranks }
 }
 
 export async function getPlayerMatchHistoryMetadata(ids, accountId) {
@@ -51,11 +54,8 @@ export async function getPlayerMatchHistoryMetadata(ids, accountId) {
     const params = new URLSearchParams({
         match_ids: ids,
         account_ids: accountId,
-        // only_filtered_players: true,
-        // include_info: true,
         include_player_info: true,
         include_player_items: true,
-        // include_player_final_stats: true,
         order_by: "start_time",
         order_direction: "desc",
         limit: 10,
@@ -111,17 +111,3 @@ export async function getPlayerSteamData(steamID) {
     return result
 }
 
-export async function getAllHeroes() {
-    const url = `https://api.deadlock-api.com/v1/assets/heroes/`
-    try {
-        const res = await fetch(url)
-        if (!res.ok) {
-            throw new Error(`Res error: ${res.status}`)
-        }
-        const result = await res.json()
-        return result
-    } catch (err) {
-        console.error(err.message)
-        return []
-    }
-}

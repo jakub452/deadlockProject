@@ -1,8 +1,8 @@
+import createMatch from '../../../../data/createMatch'
 import styles from './MatchCard.module.css'
-import formatMatch from './utils/formatMatch'
 
-const MatchCard = ({ match, heroesData, itemsData }) => {
-    const m = formatMatch(match, heroesData, itemsData)
+const MatchCard = ({ match, heroes, items }) => {
+    const m = createMatch(match, heroes, items)
 
     return (
         <div className={`${styles.container} ${styles[m.result]}`}>
@@ -19,7 +19,7 @@ const MatchCard = ({ match, heroesData, itemsData }) => {
                 </div>
                 <div className={styles.matchKda}>
                     <p className={styles.matchKdaStats}>{m.kills} / <span className={styles.deaths}>{m.deaths}</span> / {m.assists}</p>
-                    <p className={`${styles.matchKdaCalc} ${m.kda > 5 ? styles.gold : styles.undefined}`}>{m.kda} KDA</p>
+                    <p className={`${styles.matchKdaCalc} ${m.kda > 5 ? styles.gold : ""}`}>{m.kda} KDA</p>
                 </div>
                 <div className={styles.matchStats}>
                     <div className={styles.matchStatsSouls}>
@@ -37,7 +37,7 @@ const MatchCard = ({ match, heroesData, itemsData }) => {
                 {
                     m.items.map((item, i) => (
                         <div key={i} className={`${styles.item} ${styles[item?.item_slot_type]}`}>
-                            {item && <img src={item?.shop_image_webp} alt={item?.name} className={styles.itemImg} title={item?.name} />}
+                            {item && <img src={item.shop_image_webp} alt={item.name} className={styles.itemImg} title={item.name} />}
                         </div>
                     ))
                 }

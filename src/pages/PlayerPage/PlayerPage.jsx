@@ -11,15 +11,15 @@ const PlayerPage = ({ assets }) => {
   const { heroes, items, ranks } = assets
   const { player, isLoading, error } = usePlayer(id)
 
-  
-  if(error) return (
-    <div>Wystąpił błąd {error}</div>
+
+  if (error) return (
+    <div>Error has occurred: {error}</div>
   )
   if (isLoading) return (
     <Loading />
   )
-  
-  const rankData = ranks.find(r => r.tier === player.rank.rank)
+
+
 
   return (
     <div className={styles.container}>
@@ -28,10 +28,10 @@ const PlayerPage = ({ assets }) => {
       </div>
       <div className={styles.profileBody}>
         <div className={styles.profileLeft} >
-          <RankCard rankData={rankData} playerRank={player.rank} playerMatchHistory={player.history} />
+          <RankCard ranks={ranks} player={player} />
         </div>
         <div className={styles.profileRight}>
-          <MatchHistory heroesData={heroes} itemsData={items} matchMetadata={player.matches} />
+          <MatchHistory heroes={heroes} items={items} matches={player.matches} />
         </div>
       </div>
     </div>

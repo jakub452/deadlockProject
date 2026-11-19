@@ -1,13 +1,3 @@
-export async function getPlayerData(steamID) {
-    const url = `https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${steamID}&game_mode=normal`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
-}
-
 export async function searchPlayer(input) {
     const params = new URLSearchParams({
         search_query: input,
@@ -25,16 +15,6 @@ export async function searchPlayer(input) {
     const result = await res.json();
     return result
 }
-export async function getPlayerMatchHistoryData(id) {
-    const url = `https://api.deadlock-api.com/v1/players/${id}/match-history`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
-
-}
 
 export async function fetchAssets() {
     const [itemsRes, heroesRes, ranksRes] = await Promise.all([
@@ -42,38 +22,17 @@ export async function fetchAssets() {
         fetch(`https://api.deadlock-api.com/v1/assets/heroes`),
         fetch(`https://api.deadlock-api.com/v1/assets/ranks`)
     ])
-    if (!itemsRes.ok || !heroesRes.ok) {
+    if (!itemsRes.ok || !heroesRes.ok || !ranksRes.ok) {
         throw new Error(`Res error: ${itemsRes.status} ${heroesRes.status} ${ranksRes.status}`)
     }
     const [heroes, items, ranks] = await Promise.all([heroesRes.json(), itemsRes.json(), ranksRes.json()])
     return { heroes, items, ranks }
 }
 
-export async function getPlayerRank(playerId) {
-    const url = `https://api.deadlock-api.com/v1/players/${playerId}/rank`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
-}
-
-export async function getRankData(rank) {
-    const url = `https://api.deadlock-api.com/v1/assets/ranks/${rank}`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
-}
-
-
-export async function getPlayerMatchHistoryMetadata(accountID) {
+export async function fetchPlayer(id) {
 
     const params = new URLSearchParams({
-        account_ids: accountID,
+        account_ids: id,
         only_filtered_players: true,
         include_player_info: true,
         include_player_items: true,
@@ -82,35 +41,19 @@ export async function getPlayerMatchHistoryMetadata(accountID) {
         limit: 10,
     })
 
-    const url = `https://api.deadlock-api.com/v1/matches/metadata?${params}`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
+    const [steamRes, rankRes, historyRes, matchesRes] = await Promise.all([
+        fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${id}`),
+        fetch(`https://api.deadlock-api.com/v1/players/${id}/rank`),
+        fetch(`https://api.deadlock-api.com/v1/players/${id}/match-history`),
+        fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`)
+    ])
+    if (!steamRes.ok || !rankRes.ok || !historyRes.ok || !matchesRes.ok) {
+        throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${historyRes.status} ${matchesRes.status}`)
     }
-    const result = await res.json();
-    return result
-
-}
-
-
-
-export async function getMatchMetadata(matchID) {
-    const url = `https://api.deadlock-api.com/v1/matches/${matchID}/metadata`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
+    const [steam, rank, history, matches] = await Promise.all([steamRes.json(), rankRes.json(), historyRes.json(), matchesRes.json()])
+    if (!steam[0]) {
+        throw new Error(`Player not found!`)
     }
-    const result = await res.json();
-    return result
-}
-
-export async function getPlayerSteamData(steamID) {
-    const url = `https://api.deadlock-api.com/v1/players/steam?account_ids=${steamID}`
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw new Error(`Res error: ${res.status}`)
-    }
-    const result = await res.json();
-    return result
+    return { steam: steam[0], rank, history, matches }
 }
 

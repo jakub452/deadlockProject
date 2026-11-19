@@ -7,8 +7,11 @@ import { useAssets } from './hooks/useAssets.js';
 import Loading from './pages/Loading/Loading.jsx';
 
 function App() {
-  const { assets, isLoading } = useAssets()
+  const { assets, isLoading, error } = useAssets()
   
+  if(error) return (
+    <div>Error has occurred: {error}</div>
+  )
 
   if(isLoading) return (
     <Loading />

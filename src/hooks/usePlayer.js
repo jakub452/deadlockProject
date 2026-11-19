@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPlayerMatchHistoryData, getPlayerMatchHistoryMetadata, getPlayerRank, getPlayerSteamData } from "../api/deadlockApi";
+import { fetchPlayer } from "../api/deadlockApi";
 import { createPlayer } from "../data/createPlayer";
 
 export function usePlayer(id) {
@@ -8,7 +8,7 @@ export function usePlayer(id) {
 
     useEffect(() => {
 
-        if(!id) return
+        if (!id) return
         let ignore = false
 
         async function load() {
@@ -16,16 +16,11 @@ export function usePlayer(id) {
             setError(null)
 
             try {
-                const [steam, rank, history, matches] = await Promise.all([
-                    getPlayerSteamData(id),
-                    getPlayerRank(id),
-                    getPlayerMatchHistoryData(id),
-                    getPlayerMatchHistoryMetadata(id)
-                ])
-                
-                if(!ignore) setPlayer(createPlayer({ steam: steam[0], rank, history, matches }))
+                const playerData = await fetchPlayer(id)
+
+                if (!ignore) setPlayer(createPlayer(playerData))
             } catch (err) {
-                if(!ignore) setError(err.message)
+                if (!ignore) setError(err.message)
             }
 
         }

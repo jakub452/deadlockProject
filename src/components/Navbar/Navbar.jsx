@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css'
 import logo from '../../assets/logo/lockstats-logo-jasny-tekst.svg'
 import SearchBar from './SearchBar'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -10,12 +10,13 @@ const Navbar = () => {
         <header className={styles.navbar}>
             <div className={styles.wrapper}>
                 <div className={styles.left}>
-                    <img 
-                        src={logo} 
-                        alt="LockStats" 
-                        className={styles.logo} 
-                        onClick={() => {navigate('/')}}
-                    />
+                    <Link to={"/"}>
+                        <img
+                            src={logo}
+                            alt="LockStats"
+                            className={styles.logo}
+                        />
+                    </Link>
                     <nav>
                         <ul className={styles.navbarList}>
                             <li className={styles.navbarListElement}><a className={styles.navbarLink} href="#">Stats</a></li>

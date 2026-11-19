@@ -6,7 +6,10 @@ export function createPlayer({ steam, rank, history, matches }) {
             steamUrl: steam.profileurl,
             avatarUrl: steam.avatarfull,
         },
-        rank,
+        rank: {
+            rank: rank.rank,
+            subrank: rank.subrank
+        },
         history,
         matches,
     }

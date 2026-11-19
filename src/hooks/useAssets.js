@@ -6,9 +6,15 @@ export function useAssets() {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        fetchAssets()
-            .then(setAssets)
-            .catch(err => setError(err.message))
+        async function load() {
+            try {
+                const data = await fetchAssets()
+                setAssets(data)
+            } catch (err) {
+                setError(err.message)
+            }
+        }
+        load()
     }, [])
 
     return { assets, error, isLoading: !assets && !error }

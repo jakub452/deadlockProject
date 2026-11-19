@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react'
 import styles from './SearchBar.module.css'
 import { Search } from 'lucide-react'
-import { useNavigate } from 'react-router'
 import { searchPlayer } from '../../api/deadlockApi.js'
 
 const SearchBar = () => {
   const [inputData, setInputData] = useState("")
   const [searchResult, setSearchResult] = useState([])
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const inputDataTrim = inputData.trim()
     if (!/^[0-9]{17}$/.test(inputDataTrim)) {
-      console.log('nieprawidłowy steamID')
+      console.log('invalid steamID')
       return
     }
     navigate(`/profile/${inputDataTrim}`)

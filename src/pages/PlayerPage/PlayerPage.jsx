@@ -7,8 +7,9 @@ import MatchHistory from "./components/MatchHistory/MatchHistory"
 import RankCard from "./components/RankCard/RankCard"
 import Loading from "../Loading/Loading"
 
-const PlayerPage = ({ heroesData, itemsData, ranksData }) => {
+const PlayerPage = ({ assets }) => {
   const { id } = useParams()
+  const { heroes, items, ranks } = assets
 
   // TD: 
   // heroesdata and itemsdata cache on website beacuse its big request
@@ -66,9 +67,7 @@ const PlayerPage = ({ heroesData, itemsData, ranksData }) => {
   }, [id]);
 
   if (loading) return (
-    <div className={styles.loading}>
-      <Loading />
-    </div>
+    <Loading />
   )
 
   return (
@@ -81,7 +80,7 @@ const PlayerPage = ({ heroesData, itemsData, ranksData }) => {
           <RankCard rankData={rankData} playerRank={playerRank} playerMatchHistory={playerMatchHistory} />
         </div>
         <div className={styles.profileRight}>
-          <MatchHistory heroesData={heroesData} itemsData={itemsData} matchMetadata={matchMetadata} />
+          <MatchHistory heroesData={heroes} itemsData={items} matchMetadata={matchMetadata} />
         </div>
       </div>
     </div>

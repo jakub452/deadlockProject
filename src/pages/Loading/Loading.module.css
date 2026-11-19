@@ -1,4 +1,14 @@
 /* From Uiverse.io by Nawsome */ 
+.loadingScreen{
+  width: 100vw;
+  z-index: -99;
+  position: absolute;
+  height: 50vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .wheel-and-hamster {
   --dur: 1s;
   position: relative;

@@ -3,35 +3,22 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import PlayerPage from './pages/PlayerPage/PlayerPage.jsx'
 import { Routes, Route } from 'react-router';
 import styles from './App.module.css'
-import { useEffect, useState } from 'react';
-import { fetchAssets } from './api/deadlockApi.js';
+import { useAssets } from './hooks/useAssets.js';
+import Loading from './pages/Loading/Loading.jsx';
 
 function App() {
-  const [heroesData, setHeroesData] = useState([])
-  const [itemsData, setItemsData] = useState([])
-  const [ranksData, setRanksData] = useState([])
+  const { assets, isLoading} = useAssets()
 
-  async function load() {
-    try {
-      const fetchRes = await fetchAssets()
-      setHeroesData(fetchRes.heroes)
-      setItemsData(fetchRes.items)
-      setRanksData(fetchRes.ranks)
-    } catch (err) {
-      console.log(err.message)
-    }
-  }
-  useEffect(() => {
-    load()
-  }, []);
-
+  if(isLoading) return (
+    <Loading />
+  )
 
   return (
     <div className={styles.main}>
       <Navbar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/profile/:id' element={<PlayerPage heroesData={heroesData} itemsData={itemsData} ranksData={ranksData}/>} />
+        <Route path='/profile/:id' element={<PlayerPage assets={assets} />} />
       </Routes>
     </div>
   )

@@ -1,6 +1,6 @@
 .HeroStatsCard{
     font-size: 0.9rem;
-
+    font-variant-numeric: tabular-nums;
     margin-top: 16px;
 
     border: 1px solid var(--ls-border);

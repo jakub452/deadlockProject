@@ -17,7 +17,7 @@ const HeroStats = ({ heroStats }) => {
             </div>
             {
                 heroStats.map(hero => (
-                    <HeroCard hero={hero} />
+                    <HeroCard key={hero.heroID} hero={hero} />
                 ))
             }
         </div>

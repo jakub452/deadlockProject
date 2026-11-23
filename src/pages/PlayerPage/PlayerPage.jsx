@@ -6,6 +6,7 @@ import RankCard from "./components/RankCard/RankCard"
 import Loading from "../Loading/Loading"
 import { usePlayer } from "../../hooks/usePlayer"
 import HeroStats from './components/HeroStats/HeroStats'
+import MateStats from './components/MateStats/MateStats'
 
 const PlayerPage = ({ assets }) => {
   const { id } = useParams()
@@ -31,6 +32,7 @@ const PlayerPage = ({ assets }) => {
         <div className={styles.profileLeft} >
           <RankCard ranks={ranks} player={player} />
           <HeroStats heroStats={player.heroStats} />
+          <MateStats mateStats={player.mateStats} />
         </div>
         <div className={styles.profileRight}>
           <MatchHistory heroes={heroes} items={items} matches={player.matches} />

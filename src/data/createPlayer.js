@@ -31,7 +31,7 @@ export function createMatch(match, heroesData, itemsData) {
     }
 }
 
-export function createPlayer({ steam, rank, history, matches, heroStats }, assets) {
+export function createPlayer({ steam, rank, history, matches, heroStats, mates: {mates, profiles} }, assets) {
     return {
         profile: {
             name: steam.personaname,
@@ -56,6 +56,18 @@ export function createPlayer({ steam, rank, history, matches, heroStats }, asset
                 mvp: stats.mvp_rank_counts[0],
                 winratio: `${((stats.wins/stats.matches.length)*100).toFixed(0)}%`,
                 kda: ((stats.kills + stats.assists) / Math.max(stats.deaths, 1)).toFixed(2)
+            }
+        }),
+        mateStats: mates.map(mate => {
+            const profile = profiles.find(p => p.account_id === mate.mate_id)
+            return {
+                avatarURL: profile?.avatarmedium,
+                name: profile?.personaname ?? "not found",
+                played: mate.matches_played,
+                wins: mate.wins,
+                winratio: `${((mate.wins/mate.matches_played)*100).toFixed(0)}%`,
+                profileURL: profile.profileurl,
+                profileID: profile.account_id,
             }
         })
     }

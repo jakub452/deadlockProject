@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+    background-color: var(--ls-surface);
+    border: 1px solid var(--ls-border);
+
+}
+.left{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.right{
+    display: grid;
+    text-align: center;
+    grid-template-columns: 35px 35px 35px;
+    gap: 5px;
+}
+.profileIcon{
+    height: 30px;
+    border-radius: 4px;
+    background-color: var(--ls-bg);
+}
+.profileButton{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: var(--ls-text-text);
+    cursor: pointer;
+}

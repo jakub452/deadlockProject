@@ -41,12 +41,13 @@ export async function fetchPlayer(id) {
         limit: 10,
     })
 
-    const [steamRes, rankRes, historyRes, matchesRes, heroStatsRes] = await Promise.all([
+    const [steamRes, rankRes, historyRes, matchesRes, heroStatsRes, mates] = await Promise.all([
         fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${id}`),
         fetch(`https://api.deadlock-api.com/v1/players/${id}/rank`),
         fetch(`https://api.deadlock-api.com/v1/players/${id}/match-history`),
         fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`),
-        fetch(`https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${id}&min_unix_timestamp=1793908800`)
+        fetch(`https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${id}&min_unix_timestamp=1793908800`),
+        fetchMates(id)
     ])
     if (!steamRes.ok || !rankRes.ok || !historyRes.ok || !matchesRes.ok || !heroStatsRes) {
         throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${historyRes.status} ${matchesRes.status} ${heroStatsRes.status}`)
@@ -55,6 +56,25 @@ export async function fetchPlayer(id) {
     if (!steam[0]) {
         throw new Error(`Player not found!`)
     }
-    return { steam: steam[0], rank, history, matches, heroStats }
+
+    console.log(mates)
+
+    return { steam: steam[0], rank, history, matches, heroStats, mates }
 }
 
+export async function fetchMates(id) {
+    const matesRes = await fetch(`https://api.deadlock-api.com/v1/players/${id}/mate-stats?same_party=true&min_matches_played=3`)
+    if (!matesRes.ok) throw new Error(`Mates error: ${matesRes.status}`)
+    const mates = await matesRes.json()
+
+    if (mates.length === 0) return { mates, profiles: [] }
+
+    const ids = mates.map(m => m.mate_id).join(",")
+    const profilesRes = await fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${ids}`)
+    if (!profilesRes.ok) throw new Error(`Profiles error: ${profilesRes.status}`)
+    const profiles = await profilesRes.json()
+
+
+
+    return { mates, profiles }
+}

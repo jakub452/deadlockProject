@@ -5,11 +5,12 @@ import MatchHistory from "./components/MatchHistory/MatchHistory"
 import RankCard from "./components/RankCard/RankCard"
 import Loading from "../Loading/Loading"
 import { usePlayer } from "../../hooks/usePlayer"
+import HeroStats from './components/HeroStats/HeroStats'
 
 const PlayerPage = ({ assets }) => {
   const { id } = useParams()
   const { heroes, items, ranks } = assets
-  const { player, isLoading, error } = usePlayer(id)
+  const { player, isLoading, error } = usePlayer(id, assets)
 
 
   if (error) return (
@@ -29,6 +30,7 @@ const PlayerPage = ({ assets }) => {
       <div className={styles.profileBody}>
         <div className={styles.profileLeft} >
           <RankCard ranks={ranks} player={player} />
+          <HeroStats heroStats={player.heroStats} />
         </div>
         <div className={styles.profileRight}>
           <MatchHistory heroes={heroes} items={items} matches={player.matches} />

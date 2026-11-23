@@ -41,19 +41,20 @@ export async function fetchPlayer(id) {
         limit: 10,
     })
 
-    const [steamRes, rankRes, historyRes, matchesRes] = await Promise.all([
+    const [steamRes, rankRes, historyRes, matchesRes, heroStatsRes] = await Promise.all([
         fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${id}`),
         fetch(`https://api.deadlock-api.com/v1/players/${id}/rank`),
         fetch(`https://api.deadlock-api.com/v1/players/${id}/match-history`),
-        fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`)
+        fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`),
+        fetch(`https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${id}&min_unix_timestamp=1793908800`)
     ])
-    if (!steamRes.ok || !rankRes.ok || !historyRes.ok || !matchesRes.ok) {
-        throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${historyRes.status} ${matchesRes.status}`)
+    if (!steamRes.ok || !rankRes.ok || !historyRes.ok || !matchesRes.ok || !heroStatsRes) {
+        throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${historyRes.status} ${matchesRes.status} ${heroStatsRes.status}`)
     }
-    const [steam, rank, history, matches] = await Promise.all([steamRes.json(), rankRes.json(), historyRes.json(), matchesRes.json()])
+    const [steam, rank, history, matches, heroStats] = await Promise.all([steamRes.json(), rankRes.json(), historyRes.json(), matchesRes.json(), heroStatsRes.json()])
     if (!steam[0]) {
         throw new Error(`Player not found!`)
     }
-    return { steam: steam[0], rank, history, matches }
+    return { steam: steam[0], rank, history, matches, heroStats }
 }
 

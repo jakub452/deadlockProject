@@ -1,0 +1,17 @@
+.HeroStatsCard{
+    font-size: 0.9rem;
+
+    margin-top: 16px;
+
+    border: 1px solid var(--ls-border);
+}
+.HeroStatsCardTitle{
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right{
+    display: flex;
+    gap: 5px;
+}

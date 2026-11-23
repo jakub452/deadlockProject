@@ -1,4 +1,4 @@
-import createMatch from '../../../../data/createMatch'
+import { createMatch } from '../../../../data/createPlayer'
 import styles from './MatchCard.module.css'
 
 const MatchCard = ({ match, heroes, items }) => {

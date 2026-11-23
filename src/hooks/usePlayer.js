@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchPlayer } from "../api/deadlockApi";
 import { createPlayer } from "../data/createPlayer";
 
-export function usePlayer(id) {
+export function usePlayer(id, assets) {
     const [player, setPlayer] = useState(null)
     const [error, setError] = useState(null)
 
@@ -18,7 +18,7 @@ export function usePlayer(id) {
             try {
                 const playerData = await fetchPlayer(id)
 
-                if (!ignore) setPlayer(createPlayer(playerData))
+                if (!ignore) setPlayer(createPlayer(playerData, assets))
             } catch (err) {
                 if (!ignore) setError(err.message)
             }

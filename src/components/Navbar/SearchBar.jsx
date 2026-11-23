@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import styles from './SearchBar.module.css'
 import { Search } from 'lucide-react'
 import { searchPlayer } from '../../api/deadlockApi.js'
+import { useNavigate } from 'react-router'
 
 const SearchBar = () => {
   const [inputData, setInputData] = useState("")
   const [searchResult, setSearchResult] = useState([])
-
+  const navigate = useNavigate();
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     const inputDataTrim = inputData.trim()

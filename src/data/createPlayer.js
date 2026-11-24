@@ -7,6 +7,9 @@ import formatTimeSince from "./utils/formatTimeSince"
 // function
 
 export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gameMetadata, playerProfiles}, mates: {mates, profiles} }, assets) {
+    const SEASON = assets.rankedSeason.find(s => s.name === "Beta Season 2")
+    const seasonStart = SEASON?.intervals[0].start_timestamp
+    const seasonRanked = matchHistory.filter(m => m.match_mode === 4 && m.start_time >= seasonStart)
     return {
         profile: {
             name: steam.personaname,
@@ -14,12 +17,16 @@ export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gam
             steamUrl: steam.profileurl,
             avatarUrl: steam.avatarfull,
         },
+        // rank: name, subtier, image, wins, loses, winratio
         rank: {
-            rank: rank.rank,
-            subrank: rank.subrank
+            tier: rank.rank,
+            subrank: rank.subrank,
+            name: assets.ranks.find(r => r.tier === rank.rank).name,
+            icon: assets.ranks.find(r => r.tier === rank.rank)?.images[`large_subrank${rank.subrank}`],
+            wins: seasonRanked.filter(m => m.player_match_outcome === 1).length,
+            loses: seasonRanked.filter(m => m.player_match_outcome === 2).length,
+            winrate: `${((seasonRanked.filter(m => m.player_match_outcome === 1).length / seasonRanked.length*100)).toFixed(1)}%`
         },
-        // players, rankdelta, rank
-        
         games: gameMetadata.map(game => {
             const player = game.players.find(p => p.account_id === steam.account_id)
             const hero = assets.heroes.find(h => h.id === player.hero_id)

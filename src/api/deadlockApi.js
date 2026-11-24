@@ -17,16 +17,17 @@ export async function searchPlayer(input) {
 }
 
 export async function fetchAssets() {
-    const [itemsRes, heroesRes, ranksRes] = await Promise.all([
+    const [itemsRes, heroesRes, ranksRes, rankedSeasonRes] = await Promise.all([
         fetch(`https://api.deadlock-api.com/v1/assets/items/by-type/upgrade`),
         fetch(`https://api.deadlock-api.com/v1/assets/heroes`),
-        fetch(`https://api.deadlock-api.com/v1/assets/ranks`)
+        fetch(`https://api.deadlock-api.com/v1/assets/ranks`),
+        fetch(`https://api.deadlock-api.com/v1/assets/ranked-seasons`)
     ])
-    if (!itemsRes.ok || !heroesRes.ok || !ranksRes.ok) {
-        throw new Error(`Res error: ${itemsRes.status} ${heroesRes.status} ${ranksRes.status}`)
+    if (!itemsRes.ok || !heroesRes.ok || !ranksRes.ok || !rankedSeasonRes.ok) {
+        throw new Error(`Res error: ${itemsRes.status} ${heroesRes.status} ${ranksRes.status} ${rankedSeasonRes.status}`)
     }
-    const [heroes, items, ranks] = await Promise.all([heroesRes.json(), itemsRes.json(), ranksRes.json()])
-    return { heroes, items, ranks }
+    const [heroes, items, ranks, rankedSeason] = await Promise.all([heroesRes.json(), itemsRes.json(), ranksRes.json(), rankedSeasonRes.json()])
+    return { heroes, items, ranks, rankedSeason }
 }
 
 export async function fetchPlayer(id) {
@@ -45,7 +46,6 @@ export async function fetchPlayer(id) {
     if (!steam[0]) {
         throw new Error(`Player not found!`)
     }
-
     console.log(games)
     return { steam: steam[0], rank, heroStats, games, mates }
 }

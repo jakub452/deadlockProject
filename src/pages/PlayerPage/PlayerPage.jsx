@@ -10,7 +10,6 @@ import MateStats from './components/MateStats/MateStats'
 
 const PlayerPage = ({ assets }) => {
   const { id } = useParams()
-  const { heroes, items, ranks } = assets
   const { player, isLoading, error } = usePlayer(id, assets)
 
 
@@ -31,7 +30,7 @@ const PlayerPage = ({ assets }) => {
       </div>
       <div className={styles.profileBody}>
         <div className={styles.profileLeft} >
-          {/* <RankCard ranks={ranks} player={player} /> */}
+          <RankCard rank={player.rank} />
           <HeroStats heroStats={player.heroStats} />
           <MateStats mateStats={player.mateStats} />
         </div>

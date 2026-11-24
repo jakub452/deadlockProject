@@ -1,44 +1,42 @@
-import { createMatch } from '../../../../data/createPlayer'
 import styles from './MatchCard.module.css'
-
-const MatchCard = ({ match, heroes, items }) => {
-    const m = createMatch(match, heroes, items)
+import soulsIcon from '../../../../assets/Souls.png'
+const MatchCard = ({ game }) => {
 
     return (
-        <div className={`${styles.container} ${styles[m.result]}`}>
-
-            <div className={styles.infoWrapper}>
-                <div className={styles.matchText}>
-                        <p className={`${styles.matchResult} ${m.result === "Win" ? styles.winText : styles.loseText}`}>{m.result}</p>
-                        <p className={styles.matchMode}>{m.mode}</p>
-                        <p className={styles.matchTimeSince}>{m.timeSince} · {m.duration}</p>
+        <div className={styles.matchCard}>
+            <div className={styles.matchOutcome}>
+                <p>{game.gamemode}</p>
+                <p className={styles.matchOutcomeText}>{game.outcome}</p>
+                <p>{game.duration}</p>
+            </div>
+            <div className={styles.matchPerformance}>
+                <div className={styles.matchPerformanceIcon}>
+                    <img src={game.playerHero.icon} className={`${styles.icon} ${styles.heroIcon}`} alt={`${game.playerHero.name}'s icon`} />
+                    <p className={styles.heroLevel}>{game.level}</p>
                 </div>
-                <div className={styles.matchHero}>
-                    <img src={m.hero.icon} alt={m.hero.name} className={styles.heroIcon} title={m.hero.name} />
-                    <p className={styles.matchHeroName}>{m.hero.name}</p>
-                </div>
-                <div className={styles.matchKda}>
-                    <p className={styles.matchKdaStats}>{m.kills} / <span className={styles.deaths}>{m.deaths}</span> / {m.assists}</p>
-                    <p className={`${styles.matchKdaCalc} ${m.kda > 5 ? styles.gold : ""}`}>{m.kda} KDA</p>
-                </div>
-                <div className={styles.matchStats}>
-                    <div className={styles.matchStatsSouls}>
-                        <p>
-                            <img src="https://cdn.deadlock.wiki/thumb/Souls.png/14px-Souls.png" alt="souls" />
-                        </p>
-                        <div>
-                            <p>{m.souls}</p>
-                            <p className={styles.matchStatsSoulsText}>souls</p>
-                        </div>
-                    </div>
+                <div className={styles.matchPerformanceStats}>
+                    <p className={styles.heroName}>{game.playerHero.name}</p>
+                    <p className={styles.textMuted}>{game.kda}</p>
+                    <p className={styles.textMuted}>{`${game.kills} / ${game.deaths} / ${game.assists}`}</p>
+                    <p className={styles.textMuted}>{game.timeSince}</p>
                 </div>
             </div>
-            <div className={styles.itemList}>
+            <div className={styles.matchEconomy}>
+                <div className={styles.souls}><img src={soulsIcon} alt="souls icon" className={styles.soulsIcon}/>{game.networth}</div>
+                <div className={styles.souls}><img src={soulsIcon} alt="souls icon" className={styles.soulsIcon}/>{game.soulspm}/min</div>
+                <div className={styles.souls}>{game.lasthits} LH</div>
+            </div>
+            <div className={styles.items}>
                 {
-                    m.items.map((item, i) => (
-                        <div key={i} className={`${styles.item} ${styles[item?.item_slot_type]}`}>
-                            {item && <img src={item.shop_image_webp} alt={item.name} className={styles.itemImg} title={item.name} />}
-                        </div>
+                    game.items.map((item, i) => (
+                        <img className={styles.icon} src={item?.shop_image} alt={item?.name} title={item?.name} />
+                    ))
+                }
+            </div>
+            <div className={styles.others}>
+                {
+                    game.players.map(p => (
+                        <img className={styles.icon} src={p.playerHero.icon} alt={`${p.playerHero.name}'s icon`} />
                     ))
                 }
             </div>

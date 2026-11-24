@@ -1,163 +1,84 @@
-.container{
+.matchCard{
+    background-color: var(--ls-surface);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    max-width: 895px;
-    width: 100%;
-    margin-bottom: 0.5rem;
-
     height: 100px;
-}
-
-.infoWrapper{
-    display: flex;
     align-items: center;
-    width: 600px;
+    justify-content: space-around;
+    width: 800px;
+    border: 1px solid var(--ls-border);
 }
-
-.matchText{
+.icon{
+    height: 30px;
+}
+.matchOutcome{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-left: 16px;
-    max-width: 130px;
-    width: 100%;
-    height: 100px;
-    gap: 8px;
-}
-
-.matchResult{
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-.matchMode{
-    font-size: 1rem;
-}
-.matchDuration{
-    font-size: 0.9rem;
-    color: var(--ls-text-muted);
-}
-.matchTimeSince{
-    font-size: 0.9rem;
-    color: var(--ls-text-muted);
-}
-
-
-.matchHero{
-    display: flex;
-    flex-direction: row;
-    min-width: 160px;
-    width: 100%;
-    text-align: center;
+    gap: 3px;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
+    margin: 5px;
+}
+.matchPerformanceIcon{
+    background-color: var(--ls-bg);
+    position: relative;
+    margin: 5px;
 }
 .heroIcon{
-    width: 65px;
-    background-color: var(--ls-surface-3);
-    border-radius: 8px;
-    border: 2px solid var(--ls-border-strong);
+    height: 50px;
 }
-.matchHeroName{
-    text-align: start;
-    width: 70px;
+.heroLevel{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: var(--ls-bg);
+    font-weight: bold;
+    font-size: 0.8rem;
 }
-.matchKda{
+
+.matchPerformance{
     display: flex;
-    align-items: start;
-    justify-content: center;
+    align-items: center;
+}
+.matchPerformanceStats{
+    display: flex;
     flex-direction: column;
-    min-width: 130px;
-    width: 100%;
-    gap: 5px;
+    align-items: start;
+    width: 80px;
+    margin: 5px;
+}
+
+.heroName{
     font-weight: bold;
     font-size: 1.1rem;
-
 }
-
-.deaths{
-    color: var(--ls-loss);
-}
-.matchKdaCalc{
-    font-size: 0.9rem;
+.textMuted{
     color: var(--ls-text-muted);
+    font-size: 0.9rem;
 }
-.gold{
-    color: var(--ls-accent-text);
-}
-.matchStats{
+.matchEconomy{
     display: flex;
     flex-direction: column;
-    min-width: 80px;
-    width: 100%;
-
+    margin: 5px;
 }
-.matchStatsSouls{
+.soulsIcon{
+    width: 10px;
+}
+.souls{
     display: flex;
-    align-items: center;
     gap: 5px;
 }
-
-.Win{
-    background-color: var(--ls-win-bg);
-    border: 2px solid var(--ls-win-border);
-    border-left: 6px solid var(--ls-win);
-
-}
-.Win .heroIcon{
-    border-color: var(--ls-win-border);
-}
-.winText{
-    color: var(--ls-win);
-    font-weight: bold;
-}
-
-.Loss{
-    background-color: var(--ls-loss-bg);
-    border: 2px solid var(--ls-loss-border);
-    border-left: 6px solid var(--ls-loss);
-}
-.loseText{
-    color: var(--ls-loss);
-}
-.Loss .heroIcon{
-    border-color: var(--ls-loss-border);
-}
-.matchStatsSoulsText{
-    font-size: 0.8rem;
-    color: var(--ls-text-muted);
-}
-.itemList{
+.items{
+    background-color: var(--ls-bg);
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    min-width: 300px;
-    width: 300px;
-    gap: 10px;
-    margin-right: 16px;
+    width: 180px;
+    border: 2px solid var(--ls-border);
+    margin: 5px;
 }
-.item{
-    overflow: hidden;
-    width: 35px;
-    height: 35px;
-    border-radius: 4px;
-
-    border: 3px solid var(--ls-surface);
-    background-color: var(--ls-surface);
-}
-.itemImg{
-    width: 100%;
-}
-
-.vitality{
-    border: 2px solid var(--ls-item-vitality);
-}
-.weapon{
-    border: 2px solid var(--ls-item-weapon);
-}
-.spirit{
-    border: 2px solid var(--ls-item-spirit);
+.others{
+    display: flex;
+    flex-wrap: wrap;
+    width: 180px;
+    border: 2px solid var(--ls-border);
+    margin: 5px;
 }

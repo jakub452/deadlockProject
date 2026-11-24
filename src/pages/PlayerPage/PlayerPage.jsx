@@ -25,17 +25,18 @@ const PlayerPage = ({ assets }) => {
 
   return (
     <div className={styles.container}>
+      <title>{`${player.profile.name} - Lockstats | Player Profile`}</title>
       <div className={styles.profileHead}>
         <ProfileHead profile={player.profile} />
       </div>
       <div className={styles.profileBody}>
         <div className={styles.profileLeft} >
-          <RankCard ranks={ranks} player={player} />
+          {/* <RankCard ranks={ranks} player={player} /> */}
           <HeroStats heroStats={player.heroStats} />
           <MateStats mateStats={player.mateStats} />
         </div>
         <div className={styles.profileRight}>
-          <MatchHistory heroes={heroes} items={items} matches={player.matches} />
+          <MatchHistory games={player.games} />
         </div>
       </div>
     </div>

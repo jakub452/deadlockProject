@@ -31,38 +31,56 @@ export async function fetchAssets() {
 
 export async function fetchPlayer(id) {
 
-    const params = new URLSearchParams({
-        account_ids: id,
-        only_filtered_players: true,
-        include_player_info: true,
-        include_player_items: true,
-        order_by: "start_time",
-        order_direction: "desc",
-        limit: 10,
-    })
-
-    const [steamRes, rankRes, historyRes, matchesRes, heroStatsRes, mates] = await Promise.all([
+    const [steamRes, rankRes, heroStatsRes, games, mates] = await Promise.all([
         fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${id}`),
         fetch(`https://api.deadlock-api.com/v1/players/${id}/rank`),
-        fetch(`https://api.deadlock-api.com/v1/players/${id}/match-history`),
-        fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`),
         fetch(`https://api.deadlock-api.com/v1/players/hero-stats?account_ids=${id}&min_unix_timestamp=1793908800`),
+        fetchGames(id),
         fetchMates(id)
     ])
-    if (!steamRes.ok || !rankRes.ok || !historyRes.ok || !matchesRes.ok || !heroStatsRes) {
-        throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${historyRes.status} ${matchesRes.status} ${heroStatsRes.status}`)
+    if (!steamRes.ok || !rankRes.ok || !heroStatsRes.ok) {
+        throw new Error(`Res error: ${steamRes.status} ${rankRes.status} ${heroStatsRes.status}`)
     }
-    const [steam, rank, history, matches, heroStats] = await Promise.all([steamRes.json(), rankRes.json(), historyRes.json(), matchesRes.json(), heroStatsRes.json()])
+    const [steam, rank, heroStats] = await Promise.all([steamRes.json(), rankRes.json(), heroStatsRes.json()])
     if (!steam[0]) {
         throw new Error(`Player not found!`)
     }
 
-    console.log(mates)
-
-    return { steam: steam[0], rank, history, matches, heroStats, mates }
+    console.log(games)
+    return { steam: steam[0], rank, heroStats, games, mates }
 }
 
-export async function fetchMates(id) {
+async function fetchGames(id) {
+    const matchHistoryRes = await fetch(`https://api.deadlock-api.com/v1/players/${id}/match-history`)
+    if (!matchHistoryRes.ok) throw new Error(`Game history error: ${matchHistoryRes.status}`)
+    const matchHistory = await matchHistoryRes.json()
+
+    const gameIds = matchHistory.slice(0, 10).map(g => g.match_id).join(",")
+
+    const params = new URLSearchParams({
+        include_info: true,
+        include_more_info: true,
+        include_player_info: true,
+        include_player_kda: true,
+        include_player_items: true,
+        include_player_stats: true,
+        order_by: "start_time",
+        order_direction: "desc",
+        match_ids: gameIds,
+    })
+
+    const gameMetadataRes = await fetch(`https://api.deadlock-api.com/v1/matches/metadata?${params}`)
+    const gameMetadata = await gameMetadataRes.json()
+
+    const ids = [...new Set(gameMetadata.flatMap(g => g.players.map(p => p.account_id)))].join(",")
+    const playerProfilesRes = await fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${ids}`)
+    if(!playerProfilesRes.ok) throw new Error(`Profiles error: ${playerProfilesRes.status}`)
+    const playerProfiles = await playerProfilesRes.json()
+
+    return { matchHistory, gameMetadata, playerProfiles }
+}
+
+async function fetchMates(id) {
     const matesRes = await fetch(`https://api.deadlock-api.com/v1/players/${id}/mate-stats?same_party=true&min_matches_played=3`)
     if (!matesRes.ok) throw new Error(`Mates error: ${matesRes.status}`)
     const mates = await matesRes.json()
@@ -73,7 +91,6 @@ export async function fetchMates(id) {
     const profilesRes = await fetch(`https://api.deadlock-api.com/v1/players/steam?account_ids=${ids}`)
     if (!profilesRes.ok) throw new Error(`Profiles error: ${profilesRes.status}`)
     const profiles = await profilesRes.json()
-
 
 
     return { mates, profiles }

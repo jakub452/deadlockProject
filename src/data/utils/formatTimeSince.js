@@ -1,4 +1,5 @@
 const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" })
+
 export default function formatTimeSince(dateString) {
     const gameDate = new Date(dateString.replace(" ", "T") + "Z")
     const seconds = Math.floor((Date.now() - gameDate.getTime()) / 1000)
@@ -16,6 +17,6 @@ export default function formatTimeSince(dateString) {
 
     const months = Math.floor(days / 30)
     if (months < 12) return rtf.format(-months, "month")
-
+        
     return rtf.format(-Math.floor(months / 12), "year")
 }

@@ -6,7 +6,7 @@ import formatTimeSince from "./utils/formatTimeSince"
 
 // function
 
-export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gameMetadata, playerProfiles}, mates: {mates, profiles} }, assets) {
+export function createPlayer({ steam, rank, heroStats, games: { matchHistory, gameMetadata, playerProfiles }, mates: { mates, profiles } }, assets) {
     const SEASON = assets.rankedSeason.find(s => s.name === "Beta Season 2")
     const seasonStart = SEASON?.intervals[0].start_timestamp
     const seasonRanked = matchHistory.filter(m => m.match_mode === 4 && m.start_time >= seasonStart)
@@ -25,7 +25,7 @@ export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gam
             icon: assets.ranks.find(r => r.tier === rank.rank)?.images[`large_subrank${rank.subrank}`],
             wins: seasonRanked.filter(m => m.player_match_outcome === 1).length,
             loses: seasonRanked.filter(m => m.player_match_outcome === 2).length,
-            winrate: `${((seasonRanked.filter(m => m.player_match_outcome === 1).length / seasonRanked.length*100)).toFixed(1)}%`
+            winrate: `${((seasonRanked.filter(m => m.player_match_outcome === 1).length / seasonRanked.length * 100)).toFixed(1)}%`
         },
         games: gameMetadata.map(game => {
             const player = game.players.find(p => p.account_id === steam.account_id)
@@ -56,12 +56,28 @@ export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gam
                 items: formatSlots(item),
                 players: game.players.map(player => {
                     const hero = assets.heroes.find(h => h.id === player.hero_id)
+                    const playerSteam = playerProfiles.find(p => p.account_id === player.account_id)
+                    const item = player.items
+                        .filter(item => item.sold_time_s === 0)
+                        .map(item => assets.items.find(asset => asset.id === item.item_id))
+                        .filter(Boolean)
                     return {
-                        name: player.personaname,
+                        name: playerSteam?.personaname,
                         playerHero: {
                             name: hero.name,
                             icon: hero.images.icon_image_small,
-                        }
+                            level: player.player_level,
+                        },
+                        team: player.team,
+                        kills: player.kills,
+                        deaths: player.deaths,
+                        assists: player.assists,
+                        kda: ((player.kills + player.assists) / Math.max(player.deaths, 1)).toFixed(2),
+                        souls: formatSouls(player.net_worth),
+                        lastHits: player.last_hits,
+                        denies: player.denies,
+                        items: formatSlots(item),
+                        damage: formatSouls(player.stats.at(-1).player_damage) ?? "0"
                     }
                 })
 
@@ -78,7 +94,7 @@ export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gam
                 matches: stats.matches.length,
                 wins: stats.wins,
                 mvp: stats.mvp_rank_counts[0],
-                winratio: `${((stats.wins/stats.matches.length)*100).toFixed(0)}%`,
+                winratio: `${((stats.wins / stats.matches.length) * 100).toFixed(0)}%`,
                 kda: ((stats.kills + stats.assists) / Math.max(stats.deaths, 1)).toFixed(2)
             }
         }),
@@ -89,7 +105,7 @@ export function createPlayer({ steam, rank, heroStats, games: {matchHistory, gam
                 name: profile?.personaname ?? "not found",
                 played: mate.matches_played,
                 wins: mate.wins,
-                winratio: `${((mate.wins/mate.matches_played)*100).toFixed(0)}%`,
+                winratio: `${((mate.wins / mate.matches_played) * 100).toFixed(0)}%`,
                 profileURL: profile.profileurl,
                 profileID: profile.account_id,
             }

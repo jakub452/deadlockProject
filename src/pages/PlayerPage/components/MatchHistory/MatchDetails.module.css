@@ -1,0 +1,75 @@
+.matchDetails{
+    width: 880px;
+
+    background-color: var(--ls-surface);
+}
+
+.icon{
+    width: 30px;
+}
+
+.matchPerson{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+}
+
+.iconContainer{
+    background-color: var(--ls-bg);
+    padding: 3px;
+    
+}
+
+.playerInfo{
+    width: 170px;
+}
+.playerName{
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.playerHero{
+    font-size: 0.8rem;
+}
+.kda{
+    width: 80px;
+}
+.kdaTitle{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.kdaSub{
+    font-size: 0.8rem;
+}
+.souls{
+    display: flex;
+    align-items: center;
+    width: 70px;
+    gap: 3px;
+}
+.soulsIcon{
+    width: 10px;
+}
+
+.performance{
+    width: 50px;
+}
+.items{
+    background-color: var(--ls-bg);
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+}
+.itemIcon{
+    width: 25px;
+}
+
+.damage{
+    width: 70px;
+}
+.team0{
+    border: 1px solid var(--ls-team-amber);
+}
+.team1{
+    border: 1px solid var(--ls-team-sapphire);
+}

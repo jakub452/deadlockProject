@@ -1,12 +1,13 @@
 import styles from './MatchDetails.module.css'
 import soulsIcon from '../../../../assets/Souls.png'
+import { useNavigate } from 'react-router'
 const MatchDetails = ({ game, hidden }) => {
     // team0 = hidden king; team1 = archmother
     const team0 = game.players.filter(p => p.team === "Team0")
     const team1 = game.players.filter(p => p.team === "Team1")
-
-    if(hidden){
-        return ""
+    const navigate = useNavigate()
+    if (hidden) {
+        return
     }
     return (
         <div className={styles.matchDetails}>
@@ -14,11 +15,16 @@ const MatchDetails = ({ game, hidden }) => {
                 {
                     team0.map(p => (
                         <div className={styles.matchPerson}>
-                            <div className={styles.iconContainer}><img className={styles.icon} src={p.playerHero.icon} alt={`${p.playerHero.name}'s icon`} /></div>
-                            <div className={styles.playerInfo}>
-                                <p className={styles.playerName}>{p.name}</p>
-                                <p className={styles.playerHero}>{`${p.playerHero.name} · level: ${p.playerHero.level}`}</p>
-                                <p></p>
+                            <div className={styles.player} onClick={() => {navigate(`/profile/${p.id}`)}}>
+                                <div className={styles.iconContainer}>
+                                    <img className={styles.icon} src={p.playerHero.icon} alt={`${p.playerHero.name}'s icon`} />
+
+                                </div>
+                                <div className={styles.playerInfo}>
+                                    <p className={styles.playerName}>{p.name}</p>
+                                    <p className={styles.playerHero}>{`${p.playerHero.name} · level: ${p.playerHero.level}`}</p>
+                                    <p></p>
+                                </div>
                             </div>
                             <div className={styles.kda}>
                                 <p>{`${p.kills}/${p.deaths}/${p.assists}`}</p>

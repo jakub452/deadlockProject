@@ -14,7 +14,12 @@
     align-items: center;
     padding: 5px;
 }
-
+.player{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
 .iconContainer{
     background-color: var(--ls-bg);
     padding: 3px;

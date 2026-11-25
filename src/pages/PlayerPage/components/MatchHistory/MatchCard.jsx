@@ -5,8 +5,8 @@ import { useState } from 'react'
 const MatchCard = ({ game }) => {
     const [hidden, setHidden] = useState(true)
     return (
-        <button className={styles.wrapper} onClick={() => {setHidden(!hidden)}}>
-            <div className={styles.matchCard}>
+        <div className={styles.wrapper}>
+            <div className={styles.matchCard} onClick={() => {setHidden(!hidden)}}>
                 <div className={styles.matchOutcome}>
                     <p>{game.gamemode}</p>
                     <p className={styles.matchOutcomeText}>{game.outcome}</p>
@@ -45,7 +45,7 @@ const MatchCard = ({ game }) => {
                 </div>
             </div>
             <MatchDetails game={game} hidden={hidden} />
-        </button>
+        </div>
     )
 }
 

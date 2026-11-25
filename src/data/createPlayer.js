@@ -55,13 +55,16 @@ export function createPlayer({ steam, rank, heroStats, games: { matchHistory, ga
                 lasthits: player.last_hits,
                 items: formatSlots(item),
                 players: game.players.map(player => {
+
                     const hero = assets.heroes.find(h => h.id === player.hero_id)
                     const playerSteam = playerProfiles.find(p => p.account_id === player.account_id)
                     const item = player.items
                         .filter(item => item.sold_time_s === 0)
                         .map(item => assets.items.find(asset => asset.id === item.item_id))
                         .filter(Boolean)
+
                     return {
+                        id: player.account_id,
                         name: playerSteam?.personaname,
                         playerHero: {
                             name: hero.name,

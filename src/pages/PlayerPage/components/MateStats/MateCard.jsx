@@ -10,7 +10,7 @@ const MateCard = ({ mate }) => {
     return (
         <div className={styles.container}>
             <div className={styles.left}>
-                <button className={styles.profileButton} onClick={() => { navigate(`/profile/${mate.profileID}`) }}>
+                <button className={styles.profileButton} onClick={() => {navigate(`/profile/${mate.profileID}`)}}>
                     <img className={styles.profileIcon} src={mate.avatarURL} alt={`${mate.name}'s avatar`} />
                     <p>{mate.name} <ExternalLink size={10} strokeWidth={1} /></p>
                 </button>
